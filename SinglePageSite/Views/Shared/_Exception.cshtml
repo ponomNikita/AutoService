@@ -1,0 +1,8 @@
+﻿@model AutoService.Models.Shared._Exception
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Ошибка";
+}
+<div>
+    Произошла исключительная ситуация. Обратитесь к администратору системы: @Model.ex.ToString()
+</div>

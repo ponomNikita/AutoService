@@ -1,0 +1,12 @@
+﻿@using AutoService.DAL.Models
+@using AutoService.Services
+@model Item
+
+<div class="row">
+    @foreach(var attachment in Model.Attachments)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <img src="@AttachmentService.GetPath(attachment)" style="max-width: 100%; height: auto; "/>
+        </div>
+    }
+</div>

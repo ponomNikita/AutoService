@@ -1,0 +1,127 @@
+﻿body {
+    padding-top: 85px;
+    padding-bottom: 20px;
+    background-color:lightcyan;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 400px;
+    margin-bottom:5px;
+    margin-top:5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+a{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+label.required:after
+{
+    color: red;
+    content: " *";
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+ 
+.field-validation-valid {
+    display: none;
+}
+ 
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+ 
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+ 
+.validation-summary-errors {
+    color: #b94a48;
+}
+ 
+.validation-summary-valid {
+    display: none;
+}
+/*****************************************/        
+.form-login input {
+    border-radius: 50px 0 0 50px;
+}
+/*******************itemPreview**********************/
+.itemPreview {
+    padding-left: 10px;
+    padding-right:10px;
+    border:double;
+    border-color:lightsteelblue;
+    height: 100%;
+    position:relative;
+    background-color:white;
+}
+.itemPreview h4 {
+    text-align:center;
+}
+
+.itemPreview:hover{
+    background-color:lightskyblue;
+}
+
+.itemPreview:active{
+    background-color:mediumturquoise;
+}
+.itemPreviewLink{
+    color:black;
+}
+.itemPreviewLink:hover {
+    text-decoration:none;
+}
+.itemPreviewLink:visited {
+    text-decoration:none;
+}
+
+/*****************************************/
+.previewImage{
+     padding-bottom:25px;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-eq-height [class*='col-']{
+    padding-bottom:25px;
+}
+.price{
+    font-size:large;
+    text-align:center;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+

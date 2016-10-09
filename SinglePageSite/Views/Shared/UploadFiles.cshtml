@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+<script type="text/javascript">
+        function ShowPreview(input) {
+            if (input.files) {
+                    var ImageDir = new FileReader();
+                    ImageDir.onload = function (e) {
+                        $("#uploadSection").children().hide();
+                        var uploadBtn = " <input type=\"file\" name=\"Upload\" onchange=\"ShowPreview(this)\"/>";
+                        $("#uploadSection").append(uploadBtn);
+                        var index = $("#index").val();
+                        var id = "preview" + index;
+                        $("#index").prop("value", index + 1);
+                        var previewImg = "<img id=\"" + id + "\" class=\"col-lg-2 col-md-2 col-sm-3 col-xs-4\"/>";
+                        $("#previewSection").append(previewImg);
+                        var _id = "#preview" + index;
+                        $(_id).attr('src', e.target.result);
+                    }
+                    ImageDir.readAsDataURL(input.files[0]);
+                }
+        }
+</script> 
+@Html.Hidden("index", "0")
+<h3>Выберите изображения для загрузки для загрузки</h3>
+<div id="previewSection">
+</div>
+<div id="uploadSection">
+    <input type="file" name="Upload" onchange="ShowPreview(this)" />
+</div>

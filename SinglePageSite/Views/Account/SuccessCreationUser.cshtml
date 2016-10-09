@@ -1,0 +1,11 @@
+﻿@model AutoService.DAL.Models.User
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Успешная решистрация";
+    var Name = Model.FirstName ?? Model.Login;
+}
+
+<div>
+    <h3>Новый пользовтель успешно зарегистрирован в системе</h3>
+	<b>@Name</b>, добро пожаловать на наш сайт!
+</div>

@@ -1,0 +1,27 @@
+﻿@{
+    var userLoginName = User.Identity.Name;
+}
+<script>
+    $(document).ready(function () {
+        if ('@User.Identity.IsAuthenticated' == "True") {
+            $("#userInfo").show();
+            $("#loginBtn").hide();
+        }
+        else {
+            $("#userInfo").hide();
+            $("#loginBtn").show();
+        }
+    });
+</script>
+<div id="loginBtn">
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Зарегистрироваться", "CreateUser", "Account")</li>
+        <li>@Html.ActionLink("Войти", "Login", "Account")</li>
+    </ul>
+</div>
+<div id="userInfo" hidden>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a id="userBtn" href="#">@userLoginName</a></li>
+        <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
+    </ul>
+</div>

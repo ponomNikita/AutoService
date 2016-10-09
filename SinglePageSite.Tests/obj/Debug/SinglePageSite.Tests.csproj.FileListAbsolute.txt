@@ -1,0 +1,7 @@
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\bin\Debug\SinglePageSite.Tests.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\bin\Debug\SinglePageSite.Tests.pdb
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\obj\Debug\SinglePageSite.Tests.csprojResolveAssemblyReference.cache
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\obj\Debug\SinglePageSite.Tests.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\Sites\SinglePageSite\SinglePageSite\SinglePageSite.Tests\obj\Debug\SinglePageSite.Tests.pdb

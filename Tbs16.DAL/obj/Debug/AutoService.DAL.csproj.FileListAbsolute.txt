@@ -1,0 +1,10 @@
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\Tbs16.DAL.dll.config
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\Tbs16.DAL.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\Tbs16.DAL.pdb
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\EntityFramework.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\EntityFramework.xml
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\obj\Debug\AutoService.DAL.csprojResolveAssemblyReference.cache
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\obj\Debug\Tbs16.DAL.dll
+C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Tbs16.DAL\obj\Debug\Tbs16.DAL.pdb
