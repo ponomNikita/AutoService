@@ -127,6 +127,7 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\Roles.cs" />
+    <Compile Include="Enums\SettingModules.cs" />
     <Compile Include="FileStorage\Storage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,6 +216,10 @@
     <ProjectReference Include="..\AutoService.DAL\AutoService.DAL.csproj">
       <Project>{8ad6fa21-c8ca-40d0-82b7-148079a3cc07}</Project>
       <Name>AutoService.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoService.Services\AutoService.Services.csproj">
+      <Project>{970f42e6-4e60-45d4-ac2d-6589bf1254c7}</Project>
+      <Name>AutoService.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

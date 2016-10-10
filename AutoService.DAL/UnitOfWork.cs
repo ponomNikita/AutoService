@@ -14,6 +14,7 @@ namespace AutoService.DAL
         private IRepository<User_Role> user_RoleRepositrory;
         private IRepository<Item> itemRepositrory;
         private IRepository<Attachment> attachmentRepositrory;
+        private IRepository<Module> moduleRepositrory;
 
         public IRepository<User> Users
         {
@@ -62,6 +63,15 @@ namespace AutoService.DAL
                 if (attachmentRepositrory == null)
                     attachmentRepositrory = new Repository<Attachment>(db);
                 return attachmentRepositrory;
+            }
+        }
+        public IRepository<Module> Modules
+        {
+            get
+            {
+                if (moduleRepositrory == null)
+                    moduleRepositrory = new Repository<Module>(db);
+                return moduleRepositrory;
             }
         }
 

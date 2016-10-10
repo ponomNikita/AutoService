@@ -18,12 +18,17 @@ namespace Tbs16.DAL.Migrations
         {
             // Добавление модулей
             context.Modules.AddOrUpdate(
-                p => p.id,
+                p => p.Code,
               new Module {
-                  id = 1,
+                  Code = 1,
                   Name = "AddingContentFeatures",
-                  Description = "Добавляет весь функционал контента",
-                  IsActive = false
+                  Description = "Добавляет весь функционал контента"
+              },
+              new Module
+              {
+                  Code = 2,
+                  Name = "AddingSearchToNavigationBar",
+                  Description = "Добавляет поиск по сайту"
               }
             );
                    
