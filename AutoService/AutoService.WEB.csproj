@@ -147,6 +147,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\asphalt.jpg" />
+    <Content Include="Content\Images\Diagnostika-avto.jpg" />
+    <Content Include="Content\Images\kuzovnoy-remont.jpg" />
+    <Content Include="Content\Images\shinomontazh.jpg" />
+    <Content Include="Content\Images\slesarniy-remont.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

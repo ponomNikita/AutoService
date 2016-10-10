@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – AutoService</title>
+    <title>@ViewBag.Title – Топ-авто</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -24,7 +24,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="~/">AutoService</a>
+                <a class="navbar-brand" href="~/">Топ-авто</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @if (settingsService.IsModuleActive((int)SettingModules.AddingContentFeatures))
@@ -48,7 +48,6 @@
     </nav>
         <div class="container body-content">
             @RenderBody()
-            <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year – NIKITA PONOMAREV STUDIO</p>
             </footer>
