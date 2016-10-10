@@ -1,0 +1,12 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/SinglePageSite/Storage/Images
+/SinglePageSite/Storage
+/SinglePageSite/bin
+/SinglePageSite/obj
+/Tbs16.DAL/bin/Debug
+/Tbs16.DAL/obj/Debug
+/packages/log4net.2.0.5
+/SinglePageSite/logs
