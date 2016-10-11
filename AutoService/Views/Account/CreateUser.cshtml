@@ -5,74 +5,77 @@
     var returnUrl = "/Views/Account/CreateUser.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-2">
-        @Html.ValidationSummary(true)
-    </div>
-</div>
+<script src="~/Scripts/BootstrapHelperForms.js"></script>
 
-@using (Html.BeginForm("CreateUser", "Account", new{returnUrl = returnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createUserForm"}))
-{
-    <div class="container">
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Login, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label required" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+<div class="custom-form-group">
+    <div class="row">
+        <div class="col-md-offset-5 col-lg-offset-5 col-sm-offset-4 col-xs-offset-3">
+            <h2>@ViewBag.Title</h2></br>
+            @Html.ValidationSummary(true)
+        </div>
+    </div>
+
+    @using (Html.BeginForm("CreateUser", "Account", new { returnUrl = returnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createUserForm" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Login, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Login)
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label required" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label required" })
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label required" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label required" })
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.ConfirmPassword)
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label required" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.FirstName)
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label required" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Address, new { @class = "col-md-4 col-sm-4 col-xs-2 control-label" })
-                <div class="col-md-8 col-sm-8 col-xs-10">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Address, new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <button type="submit" class="btn btn-primary col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-5 col-xs-5 col-xs-offset-2" onclick="return validateForm()">Зарегистрироваться</button>
-            <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-2 col-sm-2" role="button">Отмена</a>
-        </div>
-    </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary col-lg-2 col-lg-offset-3 col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-2 col-xs-5 col-xs-offset-2" onclick="return validateForm()">Зарегистрироваться</button>
+                    <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-2 col-sm-2" role="button">Отмена</a>
+                </div>
+            </div>
 
-}
+    }
+</div>

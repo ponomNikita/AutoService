@@ -32,7 +32,7 @@ namespace AutoService.Services
             throw new NotImplementedException();
         }
 
-        public void SetModuleActive(int id)
+        public void SetModuleActive(int Code)
         {
             throw new NotImplementedException();
         }
