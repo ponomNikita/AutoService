@@ -15,7 +15,37 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div id="custom-bootstrap-menu" class="navbar navbar-fixed-top navbar-default " role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="~/">Топ-авто</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                @if (settingsService.IsModuleActive((int)SettingModules.AddingContentFeatures))
+                {
+                    <li>
+                        <a href="/Content/Index" class="navbar-brand">Content</a>
+                    </li>
+                }
+                </ul>
+                @if (settingsService.IsModuleActive((int)SettingModules.AddingSearchToNavigationBar))
+                {
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">Поиск</button>
+                    </form>
+                }
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @*<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -45,7 +75,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </nav>
+    </nav>*@
         <div class="container body-content">
             @RenderBody()
             <footer>
