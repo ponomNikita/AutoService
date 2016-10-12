@@ -5,3 +5,8 @@ C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\Si
 C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\SinglePageSite.Tests\obj\Debug\AutoService.Tests.csprojResolveAssemblyReference.cache
 C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\SinglePageSite.Tests\obj\Debug\SinglePageSite.Tests.dll
 C:\Users\ponom\Documents\Visual Studio 2015\Projects\GitHub\Sites\AutoService\SinglePageSite.Tests\obj\Debug\SinglePageSite.Tests.pdb
+C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.Tests\bin\Debug\SinglePageSite.Tests.dll
+C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.Tests\bin\Debug\SinglePageSite.Tests.pdb
+C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.Tests\obj\Debug\AutoService.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.Tests\obj\Debug\SinglePageSite.Tests.dll
+C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.Tests\obj\Debug\SinglePageSite.Tests.pdb
