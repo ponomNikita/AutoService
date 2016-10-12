@@ -21,7 +21,17 @@
 </div>
 <div id="userInfo" hidden>
     <ul class="nav navbar-nav navbar-right">
-        <li><a id="userBtn" href="#">@userLoginName</a></li>
+        @*<li><a id="userBtn" href="#">@userLoginName</a></li>*@
+        <li class="dropdown">
+            <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                @userLoginName
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-custom">
+                <li><a href="#">Редактирование профиля</a></li>
+                <li><a href="#">Мои заявки</a></li>
+            </ul>
+        </li>
         <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
     </ul>
 </div>
