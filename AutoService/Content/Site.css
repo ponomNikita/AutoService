@@ -3,6 +3,7 @@
     padding-bottom: 20px;
     background-color:lightcyan;
     background-image:url(Images/asphalt.jpg);
+    background-attachment: fixed;
     background-size:100%;
 }
 
@@ -142,24 +143,28 @@ input[type="checkbox"].input-validation-error {
     background-image:url(Images/Diagnostika-avto.jpg);
     background-repeat: no-repeat;
     background-size:cover;
+    background-attachment: fixed;
 }
 .main-block-2{
     height:400px;
     background-image:url(Images/kuzovnoy-remont.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .main-block-3{
     height:400px;
     background-image:url(Images/shinomontazh.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 .main-block-4{
     height:400px;
     background-image:url(Images/slesarniy-remont.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -217,7 +222,6 @@ input[type="checkbox"].input-validation-error {
     background-color: rgba(0, 0, 0, 1);
     background: -webkit-linear-gradient(top, rgba(92, 91, 91, 1) 0%, rgba(0, 0, 0, 1) 100%);
     background: linear-gradient(to bottom, rgba(92, 91, 91, 1) 0%, rgba(0, 0, 0, 1) 100%);
-    border-radius: 0px;
     opacity:0.9;
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
