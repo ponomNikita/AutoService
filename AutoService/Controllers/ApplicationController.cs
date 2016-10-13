@@ -7,6 +7,7 @@ using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Enums;
 using AutoService.Logger;
+using AutoService.ViewModels.Application;
 
 namespace SinglePageSite.Controllers
 {
@@ -23,7 +24,7 @@ namespace SinglePageSite.Controllers
         [HttpGet]
         public ActionResult Create(int requestType = 0)
         {
-            Application newApplication = new Application()
+            ApplicationEdit newApplication = new ApplicationEdit()
             {
                 RequestType = requestType,
                 Status = (int)ApplicationStatus.WaitForApprove,
@@ -33,15 +34,18 @@ namespace SinglePageSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Application model)
+        public ActionResult Create(ApplicationEdit model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-            model.CreatedAt = DateTime.Now;
-            model.CreatedBy = User.Identity.Name;
+
+            Application newItem = new Application();
+            model.Copy(newItem);
+            newItem.CreatedAt = DateTime.Now;
+            newItem.CreatedBy = User.Identity.Name;
 
             Logger.Info("Запись в бд новой заявки...");
-            uow.Applications.Create(model);
+            uow.Applications.Create(newItem);
             uow.Save();
             Logger.Info("Успешно!");
 

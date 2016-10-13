@@ -12,7 +12,8 @@ namespace AutoService
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-1.12.1.min.js",
                         "~/Scripts/BootstrapHelperForms.js",
-                        "~/Scripts/jquery-datapicker-ruslocalization.js"));
+                        "~/Scripts/jquery-datapicker-ruslocalization.js",
+                        "~/Scripts/jquery.timepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -29,7 +30,8 @@ namespace AutoService
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/themes/base/all.css"));
+                      "~/Content/themes/base/all.css",
+                      "~/Content/jquery.timepicker.css"));
         }
     }
 }

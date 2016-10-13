@@ -142,6 +142,7 @@
     <Compile Include="Services\AttachmentService.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\UserViewModel.cs" />
+    <Compile Include="ViewModels\Application\ApplicationEdit.cs" />
     <Compile Include="ViewModels\Content\ContentListViewModel.cs" />
     <Compile Include="ViewModels\Content\ItemEditViewModel.cs" />
   </ItemGroup>
@@ -157,6 +158,7 @@
     <Content Include="Content\Images\kuzovnoy-remont.jpg" />
     <Content Include="Content\Images\shinomontazh.jpg" />
     <Content Include="Content\Images\slesarniy-remont.jpg" />
+    <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -223,6 +225,8 @@
     <Content Include="Scripts\jquery-datapicker-ruslocalization.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

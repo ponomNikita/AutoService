@@ -1,4 +1,4 @@
-﻿@model AutoService.DAL.Models.Application
+﻿@model AutoService.ViewModels.Application.ApplicationEdit
 <div class="custom-form-group">
     <div class="row">
         <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
@@ -25,9 +25,14 @@
             </div>
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Date, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datepicker" })
+                    @Html.LabelFor(m => m.Date, new {@class = "control-label"})
+                    @Html.TextBoxFor(m => m.Date, new {@class = "form-control", id = "datepicker"})
                     @Html.ValidationMessageFor(m => m.Date)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Time, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Time, new { @class = "form-control", id = "timepicker" })
+                    @Html.ValidationMessageFor(m => m.Time)
                 </div>
             </div>
             <div class="row">

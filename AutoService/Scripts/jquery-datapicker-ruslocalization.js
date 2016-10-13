@@ -17,4 +17,11 @@
         showMonthAfterYear: false,
         yearSuffix: ''
     });
+
+    $('#timepicker').timepicker({
+        'step': 15,
+        'minTime': '8:00am',
+        'maxTime': '17:00pm',
+        'timeFormat': 'H:i'
+    });
 });
