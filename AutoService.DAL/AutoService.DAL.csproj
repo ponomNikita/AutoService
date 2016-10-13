@@ -47,6 +47,7 @@
     <Compile Include="Models\Account\Role.cs" />
     <Compile Include="Models\Account\User.cs" />
     <Compile Include="Models\Account\User_Role.cs" />
+    <Compile Include="Models\Application\Application.cs" />
     <Compile Include="Models\Content\Attachment.cs" />
     <Compile Include="Models\Content\Item.cs" />
     <Compile Include="Models\Settings\Module.cs" />

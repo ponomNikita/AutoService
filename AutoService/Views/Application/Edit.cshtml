@@ -1,0 +1,46 @@
+﻿@model AutoService.DAL.Models.Application
+<div class="custom-form-group">
+    <div class="row">
+        <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
+            <h2>@ViewBag.Title</h2><br />
+            @Html.ValidationSummary(true)
+        </div>
+    </div>
+    @using (Html.BeginForm("Create", "Application", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createApplicationForm" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CarModel, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.CarModel, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CarModel)
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CarNumber, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.CarNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CarNumber)
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datepicker" })
+                    @Html.ValidationMessageFor(m => m.Date)
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Note, new { @class = "control-label" })
+                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Note)
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary col-lg-1 col-lg-offset-4 col-md-1 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-2">Создать</button>
+                <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-3 col-sm-2" role="button">Отмена</a>
+            </div>
+        </div>
+    }
+</div>

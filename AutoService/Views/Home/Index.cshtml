@@ -1,4 +1,5 @@
-﻿@{
+﻿@using AutoService.Enums
+@{
     ViewBag.Title = "Главная";
 }
 
@@ -14,7 +15,8 @@
                 <span>Диагностика</span>
             </div>
             <div class="main-block-batton">
-                <a href="" class="btn btn-warning" role="button">Записаться</a>
+                <a href="@Url.Action("Create", "Application", new {requestType = (int) RequestTypes.Diagnostic})"
+                    class="btn btn-warning" role="button">Записаться</a>
             </div>
         </div>
     </div>
@@ -29,7 +31,8 @@
                 <span>Кузовной ремонт</span>
             </div>
             <div class="main-block-batton">
-                <a href="" class="btn btn-warning" role="button">Записаться</a>
+                <a href="@Url.Action("Create", "Application", new {requestType = (int) RequestTypes.BodyRepair})"
+                    class="btn btn-warning" role="button">Записаться</a>
             </div>
         </div>
     </div>
@@ -44,7 +47,8 @@
                 <span>Шиномонтаж</span>
             </div>
             <div class="main-block-batton">
-                <a href="" class="btn btn-warning" role="button">Записаться</a>
+                <a href="@Url.Action("Create", "Application", new {requestType = (int) RequestTypes.Tire})"
+                    class="btn btn-warning" role="button">Записаться</a>
             </div>
         </div>
     </div>
@@ -59,7 +63,8 @@
                 <span>Слесарный ремонт</span>
             </div>
             <div class="main-block-batton">
-                <a href="" class="btn btn-warning" role="button">Записаться</a>
+                <a href="@Url.Action("Create", "Application", new {requestType = (int) RequestTypes.BenchRepair})"
+                    class="btn btn-warning" role="button">Записаться</a>
             </div>
         </div>
     </div>

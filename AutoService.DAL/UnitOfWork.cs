@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoService.DAL.Models;
+using Tbs16.DAL;
 
 namespace AutoService.DAL
 {
@@ -15,7 +16,8 @@ namespace AutoService.DAL
         private IRepository<Item> itemRepositrory;
         private IRepository<Attachment> attachmentRepositrory;
         private IRepository<Module> moduleRepositrory;
-
+        private IRepository<Application> applicationRepository; 
+        
         public IRepository<User> Users
         {
             get
@@ -72,6 +74,16 @@ namespace AutoService.DAL
                 if (moduleRepositrory == null)
                     moduleRepositrory = new Repository<Module>(db);
                 return moduleRepositrory;
+            }
+        }
+
+        public IRepository<Application> Applications
+        {
+            get
+            {
+                if (applicationRepository == null)
+                    applicationRepository = new Repository<Application>(db);
+                return applicationRepository;
             }
         }
 

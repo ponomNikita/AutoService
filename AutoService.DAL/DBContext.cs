@@ -8,7 +8,7 @@ using AutoService.DAL.Models;
 
 namespace AutoService.DAL
 {
-    class DBContext : DbContext
+    public class DBContext : DbContext
     {
         public DBContext() : base("AutoService")
         { }
@@ -18,5 +18,6 @@ namespace AutoService.DAL
         public DbSet<Item> Items { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Module> Modules { get; set; }
+        public DbSet<Application> Applications { get; set; }
     }
 }
