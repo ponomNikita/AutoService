@@ -33,5 +33,23 @@ namespace AutoService.Security
                 return uow.Roles.Any(t => userRoles.Contains(t.id) && t.Code == roleCode);
             }
         }
+
+        public static string[] GetUserRoles(string login)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                User user = uow.Users.GetAll().FirstOrDefault(t => t.Login.ToUpper() == login.ToUpper());
+                if (user == null)
+                {
+                    return null;
+                }
+
+                List<int> rolesIds = uow.User_Roles.GetAll().Where(t => t.userId == user.id).Select(x => x.roleId).ToList();
+                var roles =
+                    uow.Roles.GetAll().Where(t => rolesIds.Any(o => o == t.id)).Select(x => x.Name).ToArray();
+
+                return roles;
+            }
+        }
     }
 }

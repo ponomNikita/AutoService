@@ -32,7 +32,15 @@ namespace Tbs16.DAL.Migrations
               }
             );
                    
-
+            context.Roles.AddOrUpdate(
+                p => p.Code,
+                new Role
+                {
+                    Code = 1,
+                    Name = "admin",
+                    Description = "Администратор системы"
+                }
+            );
         }
     }
 }

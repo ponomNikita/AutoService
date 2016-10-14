@@ -57,17 +57,10 @@ namespace AutoService.Controllers
                 newUser.Address = model.Address;
                 newUser.PhoneNumber = model.PhoneNumber;
 
-                try
-                {
-                    Logger.Info(string.Format("Успешная решистрация нового пользователя {0}", newUser.Login));
-                    uow.Users.Create(newUser);
-                    uow.Save();
-                }
-                catch(Exception ex)
-                {
-                    Logger.Error("Ошибка при сохранении в бд нового пользователя", ex);
-                    return View("_Exceprtion", new _Exception { ex = ex });
-                }
+                Logger.Info(string.Format("Попытка регистрации нового пользователя {0}...", newUser.Login));
+                uow.Users.Create(newUser);
+                uow.Save();
+                Logger.Info("Успешно!");
 
                 return View("SuccessCreationUser", newUser);
             }

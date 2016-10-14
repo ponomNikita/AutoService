@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutoService.ViewModels.Application
 {
-    public class ApplicationEdit : DAL.Models.Application
+    public class ApplicationEdit : AutoService.DAL.Models.Application
     {
         [Required]
         [Display(Name="Время")]

@@ -8,6 +8,7 @@ using AutoService.DAL.Models;
 using AutoService.Enums;
 using AutoService.Logger;
 using AutoService.ViewModels.Application;
+using AutoService.Security;
 
 namespace SinglePageSite.Controllers
 {
@@ -22,6 +23,7 @@ namespace SinglePageSite.Controllers
             uow = new UnitOfWork();
         }
         [HttpGet]
+        [AuthorizeUser]
         public ActionResult Create(int requestType = 0)
         {
             ApplicationEdit newApplication = new ApplicationEdit()
