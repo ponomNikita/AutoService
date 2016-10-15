@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoService.DAL.Models;
 
 namespace AutoService.Security
 {
@@ -17,6 +18,11 @@ namespace AutoService.Security
             if (!isAuthorized)
             {
                 return false;
+            }
+
+            if (Roles == null)
+            {
+                return true;
             }
 
             var roles = Roles.Split(new char[]{',', ' '}, StringSplitOptions.RemoveEmptyEntries);

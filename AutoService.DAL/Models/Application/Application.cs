@@ -26,7 +26,6 @@ namespace AutoService.DAL.Models
         public int? Status { get; set; }
         [Required]
         [Display(Name = "Дата")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
