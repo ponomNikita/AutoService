@@ -37,23 +37,37 @@ namespace AutoService.ViewModels.Application
         /// Преобразует строковое представление времени (чч:мм)
         /// в DateTime
         /// </summary>
-        private DateTime? StringTimeToDateTime(string time)
+        public static DateTime? StringTimeToDateTime(string time)
         {
             var t = time.Split(':');
-            DateTime? datetime = null;
-
-            if (t[0] != null && t[1] != null)
+            DateTime? datetime = DateTime.MinValue;
+            int? hh;
+            int? mm;
+            if (t.Length == 2 && t[0] != null && t[1] != null)
             {
                 try
                 {
-                    var hh = Convert.ToInt32(t[0]);
-                    var mm = Convert.ToInt32(t[1]);
-                    datetime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, hh, mm, 0);
+                    hh = Convert.ToInt32(t[0]);
+                    mm = Convert.ToInt32(t[1]);
+
+                    if (hh > -1 && hh < 24 && mm > -1 && mm < 60)
+                    {
+                        datetime = datetime.Value.AddHours(hh.Value);
+                        datetime = datetime.Value.AddMinutes(mm.Value);
+                    }
+                    else
+                    {
+                        datetime = null;
+                    }
                 }
                 catch (Exception ex)
                 {
-                    throw new ApplicationException("[StringTimeToDateTime]: Ошибка при конвертировании времени");
+                    datetime = null;
                 }
+            }
+            else
+            {
+                datetime = null;
             }
 
             return datetime;
