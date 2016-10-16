@@ -1,7 +1,14 @@
-﻿@model AutoService.ViewModels.Application.ApplicationEdit
+﻿@using System.Web.Configuration
+@model AutoService.ViewModels.Application.ApplicationEdit
+@{
+    var timepickerStep = WebConfigurationManager.AppSettings["scheduleStep"];
+    var timepickerStartTime = WebConfigurationManager.AppSettings["scheduleStartTime"];
+    var timepickerEndTime = WebConfigurationManager.AppSettings["scheduleEndTime"];
+}
 <script>
     $(document)
-        .ready(function() {
+        .ready(function () {
+            configureTimePicker(@timepickerStep, '@timepickerStartTime', '@timepickerEndTime');
             $('#datepicker').removeAttr("data-val-date");
         });
 </script>
@@ -9,6 +16,10 @@
     <div class="row">
         <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
             <h2>@ViewBag.Title</h2><br />
+        </div>
+    </div>
+    <div class="row">
+        <div class ="col-md-offset-2 col-lg-offset-2 col-sm-offset-2 col-xs-offset-1">
             @Html.ValidationSummary(true)
         </div>
     </div>
@@ -17,26 +28,26 @@
         <div class="container">
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CarModel, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.CarModel, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.CarModel, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.CarModel)
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CarNumber, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.CarNumber, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.CarNumber, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.CarNumber)
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Date, new {@class = "control-label"})
+                    @Html.LabelFor(m => m.Date, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.Date, new {@class = "form-control", id = "datepicker"})
                     @Html.ValidationMessageFor(m => m.Date)
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Time, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.Time, new { @class = "control-label required" })
                     @Html.TextBoxFor(m => m.Time, new { @class = "form-control", id = "timepicker" })
                     @Html.ValidationMessageFor(m => m.Time)
                 </div>

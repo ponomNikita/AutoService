@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ApplicationServices;
 using System.Web.Mvc;
 using AutoService.DAL;
 using AutoService.DAL.Models;
-using AutoService.Enums;
 using AutoService.Logger;
 using AutoService.ViewModels.Application;
 using AutoService.Security;
+using AutoService.Services.Enums;
+using AutoService.Services.Interfaces;
+using AutoService.Services;
 
 namespace SinglePageSite.Controllers
 {
@@ -16,11 +19,13 @@ namespace SinglePageSite.Controllers
     {
         private ILogger Logger;
         private UnitOfWork uow;
+        private IApplicationService appService;
 
         public ApplicationController()
         {
             Logger = new Logger();
             uow = new UnitOfWork();
+            appService = new ApplicationService();
         }
         [HttpGet]
         [AuthorizeUser]
@@ -45,6 +50,12 @@ namespace SinglePageSite.Controllers
             model.Copy(newItem);
             newItem.CreatedAt = DateTime.Now;
             newItem.CreatedBy = User.Identity.Name;
+
+            if (!appService.IsFreeTime(newItem.Date))
+            {
+                ModelState.AddModelError("", "К сожалению это время занято. Пожалуйста, выберете другую дату или время");
+                return View(model);
+            }
 
             Logger.Info("Запись в бд новой заявки...");
             uow.Applications.Create(newItem);

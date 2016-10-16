@@ -25,3 +25,12 @@
         'timeFormat': 'H:i'
     });
 });
+
+function configureTimePicker(step, startTime, endTime) {
+    $('#timepicker').timepicker({
+        'step': step,
+        'minTime': startTime,
+        'maxTime': endTime,
+        'timeFormat': 'H:i'
+    });
+}

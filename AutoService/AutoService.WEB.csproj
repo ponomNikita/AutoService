@@ -127,7 +127,6 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Enums\ApplicationStatus.cs" />
     <Compile Include="Enums\RequestTypes.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Enums\SettingModules.cs" />
