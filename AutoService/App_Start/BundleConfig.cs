@@ -12,7 +12,7 @@ namespace AutoService
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-1.12.1.min.js",
                         "~/Scripts/BootstrapHelperForms.js",
-                        "~/Scripts/jquery-datapicker-ruslocalization.js",
+                        "~/Scripts/datetimepicker.js",
                         "~/Scripts/jquery.timepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

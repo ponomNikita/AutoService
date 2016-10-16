@@ -63,6 +63,7 @@ Thumbs.db
 [Bb]in
 [Oo]bj
 [Tt]est[Rr]esults
+*.cache
 *.suo
 *.user
 *.[Cc]ache
