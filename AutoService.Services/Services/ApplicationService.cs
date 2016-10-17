@@ -4,26 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoService.DAL;
+using AutoService.DAL.Models;
 using AutoService.Services.Interfaces;
 using AutoService.Services.Enums;
+using AutoService.Services;
+using AutoService.Services.Services;
 
 namespace AutoService.Services
 {
     public class ApplicationService : IApplicationService
     {
-        private UnitOfWork uow;
+        private readonly IRepository<Application> repository;
+        private readonly IDateTimeProvider timeProvider;
 
-        public ApplicationService()
+        public ApplicationService(IRepository<Application> repo, IDateTimeProvider dateTimeProvider)
         {
-            uow = new UnitOfWork();
+            repository = repo;
+            timeProvider = dateTimeProvider;
+            timeProvider = dateTimeProvider;
         }
 
         public bool IsFreeTime(DateTime dateTime)
         {
-            if (dateTime < DateTime.Now)
+            if (dateTime < timeProvider.Now)
                 return false;
 
-            return !uow.Applications.Any(app => app.Date.Equals(dateTime));
+            return !repository.GetAll().Any(app => app.Date.Equals(dateTime));
         }
 
         public void ChangeStatus(int id, ApplicationStatus status)

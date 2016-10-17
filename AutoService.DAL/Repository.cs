@@ -46,7 +46,7 @@ namespace AutoService.DAL
             return dbSet.FirstOrDefault(o => o.id == id);
         }
 
-        public IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return dbSet;
         }

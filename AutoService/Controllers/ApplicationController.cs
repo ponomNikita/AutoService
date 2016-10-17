@@ -25,7 +25,7 @@ namespace SinglePageSite.Controllers
         {
             Logger = new Logger();
             uow = new UnitOfWork();
-            appService = new ApplicationService();
+            appService = new ApplicationService(uow.Applications);
         }
         [HttpGet]
         [AuthorizeUser]

@@ -2,7 +2,7 @@
 using AutoService.ViewModels.Application;
 using NUnit.Framework;
 
-namespace AutoService.Tests
+namespace AutoService.Web.Tests
 {
     [TestFixture]
     public class StringTimeToDateTime
