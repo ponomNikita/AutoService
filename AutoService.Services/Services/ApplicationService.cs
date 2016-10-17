@@ -46,5 +46,61 @@ namespace AutoService.Services
         {
             throw new NotImplementedException();
         }
+
+
+        public Application GetById(int id)
+        {
+            return repository.Get(id);
+        }
+
+        public IEnumerable<Application> GetAll()
+        {
+            return repository.GetAll().AsEnumerable();
+        }
+
+        public IEnumerable<Application> GetFiltered(AutoService.DAL.FilterModel.ApplicationFilter filter)
+        {
+            var applications = repository.GetAll();
+
+            if (filter != null && applications != null)
+            {
+                if (filter.Status.HasValue)
+                {
+                    applications.Where(t => t.Status == filter.Status);
+                }
+
+                if (filter.RequestType.HasValue)
+                {
+                    applications.Where(t => t.RequestType == filter.RequestType.Value);
+                }
+
+                if (!string.IsNullOrWhiteSpace(filter.CarModel))
+                {
+                    applications.Where(t => t.CarModel.ToLower().Contains(filter.CarModel.ToLower()));
+                }
+
+                if (!string.IsNullOrWhiteSpace(filter.CarNumber))
+                {
+                    applications.Where(t => t.CarNumber.ToLower().Contains(filter.CarNumber.ToLower()));
+                }
+
+                if (!string.IsNullOrWhiteSpace(filter.CreatedBy))
+                {
+                    applications.Where(t => t.CreatedBy.ToLower().Contains(filter.CreatedBy.ToLower()));
+                }
+
+                if (filter.Date.HasValue)
+                {
+                    applications.Where(t => t.Date == filter.Date.Value);
+                }
+
+                if (filter.CreatedAt.HasValue)
+                {
+                    applications.Where(t => t.CreatedAt == filter.CreatedAt.Value);
+                }
+            }
+
+            return applications.AsEnumerable();
+        }
     }
 }

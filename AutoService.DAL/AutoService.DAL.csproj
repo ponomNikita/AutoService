@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
+    <Compile Include="FilterModel\ApplicationFilter.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\Role.cs" />

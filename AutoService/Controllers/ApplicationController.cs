@@ -12,6 +12,7 @@ using AutoService.Security;
 using AutoService.Services.Enums;
 using AutoService.Services.Interfaces;
 using AutoService.Services;
+using AutoService.Services.Services;
 
 namespace SinglePageSite.Controllers
 {
@@ -20,12 +21,14 @@ namespace SinglePageSite.Controllers
         private ILogger Logger;
         private UnitOfWork uow;
         private IApplicationService appService;
+        private IDateTimeProvider timeProvider;
 
         public ApplicationController()
         {
+            timeProvider = new DateTimeProvider();
             Logger = new Logger();
             uow = new UnitOfWork();
-            appService = new ApplicationService(uow.Applications);
+            appService = new ApplicationService(uow.Applications, timeProvider);
         }
         [HttpGet]
         [AuthorizeUser]
