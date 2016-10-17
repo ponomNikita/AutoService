@@ -29,7 +29,7 @@
             </a>
             <ul class="dropdown-menu dropdown-custom">
                 <li><a href="#">Редактирование профиля</a></li>
-                <li><a href="#">Мои заявки</a></li>
+                <li><a href="/Application/Index?CreatedBy=@User.Identity.Name">Мои заявки</a></li>
             </ul>
         </li>
         <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>

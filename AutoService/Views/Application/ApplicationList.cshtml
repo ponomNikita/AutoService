@@ -1,0 +1,25 @@
+﻿@using AutoService.Enums
+@using AutoService.Services.Enums
+@model AutoService.ViewModels.Application.ApplicationContent
+
+<div class="custom-form-group">
+    <div class="container" style="width:100%">
+        <table class="table">
+            <tr>
+                <th>Тип заявки</th>
+                <th>Статус</th>
+                <th>Модель авто</th>
+                <th>Дата записи</th>
+            </tr>
+            @foreach (var app in Model.Items)
+            {
+                <tr>
+                    <td>@(((RequestTypes)app.RequestType).Description())</td>
+                    <td>@(((ApplicationStatus)app.RequestType).Description())</td>
+                    <td>@(app.CarModel)</td>
+                    <td>@(app.Date)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

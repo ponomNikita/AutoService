@@ -25,6 +25,9 @@
     </div>
     @using (Html.BeginForm("Create", "Application", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createApplicationForm" }))
     {
+        @Html.HiddenFor(m => m.RequestType)
+        @Html.HiddenFor(m => m.Status)
+        @Html.HiddenFor(m => m.IsApproved)
         <div class="container">
             <div class="row">
                 <div class="form-group">

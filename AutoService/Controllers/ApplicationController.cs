@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.ApplicationServices;
 using System.Web.Mvc;
 using AutoService.DAL;
+using AutoService.DAL.FilterModel;
 using AutoService.DAL.Models;
 using AutoService.Logger;
 using AutoService.ViewModels.Application;
@@ -67,6 +68,22 @@ namespace SinglePageSite.Controllers
 
             //TODO Сделать редирект на список заявок клиента, когда он будет реализован
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult Index(ApplicationFilter filter)
+        {
+            ApplicationContent model = new ApplicationContent()
+            {
+                Filter = filter,
+                Items = GetFiltredContent(filter)
+            };
+            return View(model);
+        }
+
+        public IEnumerable<Application> GetFiltredContent(ApplicationFilter filter)
+        {
+            return appService.GetFiltered(filter);
         }
     }
 }
