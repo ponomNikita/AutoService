@@ -27,13 +27,13 @@ C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\A
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.DAL\obj\Debug\Tbs16.DAL.dll
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService.DAL\obj\Debug\Tbs16.DAL.pdb
+C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.dll.config
+C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.dll
+C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.pdb
 C:\GitHub\AutoService\AutoService.DAL\bin\Debug\EntityFramework.dll
 C:\GitHub\AutoService\AutoService.DAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\GitHub\AutoService\AutoService.DAL\bin\Debug\EntityFramework.xml
 C:\GitHub\AutoService\AutoService.DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.csprojResolveAssemblyReference.cache
-C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.dll.config
-C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.dll
-C:\GitHub\AutoService\AutoService.DAL\bin\Debug\AutoService.DAL.pdb
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.dll
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.pdb

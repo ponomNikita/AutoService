@@ -5,3 +5,4 @@
 *.dll
 *.pdb
 *.cache
+/AutoService/[Bb]in

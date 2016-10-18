@@ -123,10 +123,8 @@ C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\A
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.csprojResolveAssemblyReference.cache
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService\obj\Debug\SinglePageSite.dll
 C:\Users\Никита\Documents\Visual Studio 2013\Projects\GitHub\AutoService\AutoService\obj\Debug\SinglePageSite.pdb
-C:\GitHub\AutoService\AutoService\bin\SinglePageSite.dll.config
-C:\GitHub\AutoService\AutoService\bin\SinglePageSite.dll
-C:\GitHub\AutoService\AutoService\bin\SinglePageSite.pdb
 C:\GitHub\AutoService\AutoService\bin\Antlr3.Runtime.dll
+C:\GitHub\AutoService\AutoService\bin\AutoService.DAL.dll
 C:\GitHub\AutoService\AutoService\bin\AutoService.Services.dll
 C:\GitHub\AutoService\AutoService\bin\EntityFramework.dll
 C:\GitHub\AutoService\AutoService\bin\EntityFramework.SqlServer.dll
@@ -141,6 +139,7 @@ C:\GitHub\AutoService\AutoService\bin\System.Web.WebPages.Deployment.dll
 C:\GitHub\AutoService\AutoService\bin\System.Web.WebPages.dll
 C:\GitHub\AutoService\AutoService\bin\System.Web.WebPages.Razor.dll
 C:\GitHub\AutoService\AutoService\bin\WebGrease.dll
+C:\GitHub\AutoService\AutoService\bin\AutoService.DAL.pdb
 C:\GitHub\AutoService\AutoService\bin\AutoService.Services.pdb
 C:\GitHub\AutoService\AutoService\bin\Antlr3.Runtime.pdb
 C:\GitHub\AutoService\AutoService\bin\EntityFramework.xml
@@ -162,7 +161,8 @@ C:\GitHub\AutoService\AutoService\bin\ru\System.Web.WebPages.Deployment.resource
 C:\GitHub\AutoService\AutoService\bin\ru\System.Web.WebPages.Razor.resources.dll
 C:\GitHub\AutoService\AutoService\bin\ru\System.Web.Optimization.resources.dll
 C:\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.csprojResolveAssemblyReference.cache
-C:\GitHub\AutoService\AutoService\obj\Debug\SinglePageSite.dll
-C:\GitHub\AutoService\AutoService\obj\Debug\SinglePageSite.pdb
-C:\GitHub\AutoService\AutoService\bin\AutoService.DAL.dll
-C:\GitHub\AutoService\AutoService\bin\AutoService.DAL.pdb
+C:\GitHub\AutoService\AutoService\bin\AutoService.WEB.dll.config
+C:\GitHub\AutoService\AutoService\bin\AutoService.WEB.dll
+C:\GitHub\AutoService\AutoService\bin\AutoService.WEB.pdb
+C:\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.dll
+C:\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.pdb
