@@ -41,7 +41,7 @@ namespace SinglePageSite.Controllers
                 Status = (int)ApplicationStatus.WaitForApprove,
                 IsApproved = false
             };
-            return View();
+            return View(newApplication);
         }
 
         [HttpPost]

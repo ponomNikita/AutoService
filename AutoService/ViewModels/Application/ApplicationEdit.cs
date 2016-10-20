@@ -11,6 +11,7 @@ namespace AutoService.ViewModels.Application
         [Required]
         [Display(Name="Время")]
         public string Time { get; set; }
+        public new DateTime? Date { get; set; }
 
         public void Copy(DAL.Models.Application destination)
         {
@@ -20,17 +21,18 @@ namespace AutoService.ViewModels.Application
             destination.CreatedAt = CreatedAt;
             destination.CreatedBy = CreatedBy;
             destination.RequestType = RequestType;
-            destination.Date = new DateTime(Date.Year, Date.Month, Date.Day);
+            if(this.Date.HasValue)
+                destination.Date = new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day);
             destination.IsApproved = IsApproved;
             destination.Note = Note;
 
             DateTime? time = StringTimeToDateTime(Time);
-            if (time.HasValue)
+            if (time.HasValue && this.Date.HasValue)
             {
-                Date = Date.AddHours(time.Value.Hour);
-                Date = Date.AddMinutes(time.Value.Minute);
+                this.Date = this.Date.Value.AddHours(time.Value.Hour);
+                this.Date = this.Date.Value.AddMinutes(time.Value.Minute);
             }
-            destination.Date = Date;
+            destination.Date = Date ?? DateTime.MinValue;
         }
 
         /// <summary>
