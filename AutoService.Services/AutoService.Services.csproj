@@ -78,6 +78,10 @@
       <Project>{8ad6fa21-c8ca-40d0-82b7-148079a3cc07}</Project>
       <Name>AutoService.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AutoService.Infrastructure\AutoService.Infrastructure.csproj">
+      <Project>{cafb2256-4bd4-417c-b365-72e6adb5400d}</Project>
+      <Name>AutoService.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

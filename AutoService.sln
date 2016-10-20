@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Services", "Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Services.Test", "AutoService.Services.Test\AutoService.Services.Test.csproj", "{ABEF1682-66F1-423F-9535-607A240200BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Infrastructure", "AutoService.Infrastructure\AutoService.Infrastructure.csproj", "{CAFB2256-4BD4-417C-B365-72E6ADB5400D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{ABEF1682-66F1-423F-9535-607A240200BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABEF1682-66F1-423F-9535-607A240200BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABEF1682-66F1-423F-9535-607A240200BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFB2256-4BD4-417C-B365-72E6ADB5400D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFB2256-4BD4-417C-B365-72E6ADB5400D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFB2256-4BD4-417C-B365-72E6ADB5400D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFB2256-4BD4-417C-B365-72E6ADB5400D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

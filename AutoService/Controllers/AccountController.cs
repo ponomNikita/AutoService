@@ -6,19 +6,17 @@ using System.Web.Mvc;
 using System.Web.Security;
 using AutoService.DAL;
 using AutoService.DAL.Models;
+using AutoService.Services.Interfaces;
+using AutoService.Services.Services;
 using AutoService.Services.ViewModels;
-using AutoService.Logger;
 using AutoService.WEB.Controllers;
 
 namespace AutoService.Controllers
 {
     public class AccountController : BaseController
-    {
-        IAutoServiceUnitOfWork uow;
-        
+    {     
         public AccountController()
         {
-            uow = new AutoServiceUnitOfWork();
         }
         
         [HttpGet]
@@ -33,33 +31,14 @@ namespace AutoService.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(uow.Users.GetAll().Any(x => x.Login.ToUpper() == model.Login.ToUpper()))
+                string modelError;
+                var newUser = accountService.CreateUser(model, out modelError);
+
+                if (!string.IsNullOrWhiteSpace(modelError))
                 {
-                    ModelState.AddModelError("", "Пользователь с таким логином уже зарегистрирован");
-                    Logger.Error("Попытка регистрации пользователя с существующим логином");
+                    ModelState.AddModelError("", modelError);
                     return View(model);
                 }
-
-                if (uow.Users.GetAll().Any(x => x.Email.ToUpper() == model.Email.ToUpper()))
-                {
-                    ModelState.AddModelError("", "Пользователь с такой электронной почтой уже зарегистрирован");
-                    Logger.Error("Попытка регистрации пользователя с существующим email");
-                    return View(model);
-                }
-
-                User newUser = new User();
-                newUser.Login = model.Login;
-                newUser.Password = GetHashString(model.Password);
-                newUser.FirstName = model.FirstName;
-                newUser.LastName = model.LastName;
-                newUser.Email = model.Email;
-                newUser.Address = model.Address;
-                newUser.PhoneNumber = model.PhoneNumber;
-
-                Logger.Info(string.Format("Попытка регистрации нового пользователя {0}...", newUser.Login));
-                uow.Users.Create(newUser);
-                uow.Save();
-                Logger.Info("Успешно!");
 
                 return View("SuccessCreationUser", newUser);
             }
@@ -67,27 +46,6 @@ namespace AutoService.Controllers
             {
                 return !string.IsNullOrWhiteSpace(returnUrl) ? Redirect(returnUrl) : Redirect("~/");
             }
-        }
-
-        private string GetHashString(string s)
-        {
-            //переводим строку в байт-массим  
-            byte[] bytes = Encoding.Unicode.GetBytes(s);
-
-            //создаем объект для получения средст шифрования  
-            MD5CryptoServiceProvider CSP =
-                new MD5CryptoServiceProvider();
-
-            //вычисляем хеш-представление в байтах  
-            byte[] byteHash = CSP.ComputeHash(bytes);
-
-            string hash = string.Empty;
-
-            //формируем одну цельную строку из массива  
-            foreach (byte b in byteHash)
-                hash += string.Format("{0:x2}", b);
-
-            return hash; 
         }
 
         [HttpGet]
@@ -100,34 +58,22 @@ namespace AutoService.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            var password = GetHashString(model.Password);
-            if (uow.Users.GetAll().Any(x => x.Login.ToUpper() == model.Login.ToUpper() && x.Password.ToUpper() == password.ToUpper()))
-            {
-                User currUser = uow.Users.GetAll().FirstOrDefault(x => x.Login.ToUpper() == model.Login.ToUpper() && x.Password.ToUpper() == password.ToUpper());
-                FormsAuthentication.SetAuthCookie(currUser.Login, model.RememberMe);
+            string modelError;
+            accountService.Login(model, out modelError);
 
-                Logger.Info(string.Format("Выполнен вход пользователем {0}", currUser.Login));
-                return RedirectToAction("Index", "Home");
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(modelError))
             {
-                ModelState.AddModelError("", "Пользователя с таким логином и паролем не существует");
-                Logger.Info("Выполнена попытка входа с несуществующим логином или паролем");
                 return View();
             }
+
+            return RedirectToAction("Index", "Home");
+           
         }
 
         public ActionResult Logout()
         {
-            Logger.Info(string.Format("Пользователь {0} вышел из системы", currentUser.Login));
-            FormsAuthentication.SignOut();
+            accountService.Logout();
             return RedirectToAction("Index", "Home");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            uow.Dispose();
-            base.Dispose(disposing);
         }
 
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoService.DAL;
 using AutoService.DAL.Models;
+using AutoService.Infrastructure.Logger;
 using AutoService.Services.Interfaces;
 using AutoService.Services.Enums;
 using AutoService.Services;
@@ -18,6 +19,7 @@ namespace AutoService.Services
         private readonly IRepository<Application> repository;
         private readonly IDateTimeProvider timeProvider;
         private User currentUser;
+        private ILogger Logger;
 
         public ApplicationService(IRepository<Application> _repository, IDateTimeProvider dateTimeProvider, User _currentUser)
         {
@@ -25,6 +27,7 @@ namespace AutoService.Services
             timeProvider = dateTimeProvider;
             timeProvider = dateTimeProvider;
             currentUser = _currentUser;
+            Logger = new Logger();
         }
 
         public bool IsFreeTime(DateTime dateTime)
@@ -69,37 +72,37 @@ namespace AutoService.Services
             {
                 if (filter.Status.HasValue)
                 {
-                    applications.Where(t => t.Status == filter.Status);
+                    applications = applications.Where(t => t.Status == filter.Status);
                 }
 
                 if (filter.RequestType.HasValue)
                 {
-                    applications.Where(t => t.RequestType == filter.RequestType.Value);
+                    applications = applications.Where(t => t.RequestType == filter.RequestType.Value);
                 }
 
                 if (!string.IsNullOrWhiteSpace(filter.CarModel))
                 {
-                    applications.Where(t => t.CarModel.ToLower().Contains(filter.CarModel.ToLower()));
+                    applications = applications.Where(t => t.CarModel.ToLower().Contains(filter.CarModel.ToLower()));
                 }
 
                 if (!string.IsNullOrWhiteSpace(filter.CarNumber))
                 {
-                    applications.Where(t => t.CarNumber.ToLower().Contains(filter.CarNumber.ToLower()));
+                    applications = applications.Where(t => t.CarNumber.ToLower().Contains(filter.CarNumber.ToLower()));
                 }
 
                 if (!string.IsNullOrWhiteSpace(filter.CreatedBy))
                 {
-                    applications.Where(t => t.CreatedBy.ToLower().Contains(filter.CreatedBy.ToLower()));
+                    applications = applications.Where(t => t.CreatedBy.ToLower().Contains(filter.CreatedBy.ToLower()));
                 }
 
                 if (filter.Date.HasValue)
                 {
-                    applications.Where(t => t.Date == filter.Date.Value);
+                    applications = applications.Where(t => t.Date == filter.Date.Value);
                 }
 
                 if (filter.CreatedAt.HasValue)
                 {
-                    applications.Where(t => t.CreatedAt == filter.CreatedAt.Value);
+                    applications = applications.Where(t => t.CreatedAt == filter.CreatedAt.Value);
                 }
             }
 
@@ -118,10 +121,10 @@ namespace AutoService.Services
                 return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
             }
 
-            //Logger.Info("Запись в бд новой заявки...");
+            Logger.Info("Запись в бд новой заявки...");
             repository.Create(newItem);
             repository.Save();
-            //Logger.Info("Успешно!");
+            Logger.Info("Успешно!");
             
             return string.Empty;
         }

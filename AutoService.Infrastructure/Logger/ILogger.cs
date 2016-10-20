@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Logger
+namespace AutoService.Infrastructure.Logger
 {
     public interface ILogger
     {

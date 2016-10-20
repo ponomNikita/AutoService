@@ -136,8 +136,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorizeUserAttribute.cs" />
     <Compile Include="Security\Security.cs" />
@@ -278,6 +276,10 @@
     <ProjectReference Include="..\AutoService.DAL\AutoService.DAL.csproj">
       <Project>{8ad6fa21-c8ca-40d0-82b7-148079a3cc07}</Project>
       <Name>AutoService.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoService.Infrastructure\AutoService.Infrastructure.csproj">
+      <Project>{cafb2256-4bd4-417c-b365-72e6adb5400d}</Project>
+      <Name>AutoService.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\AutoService.Services\AutoService.Services.csproj">
       <Project>{970f42e6-4e60-45d4-ac2d-6589bf1254c7}</Project>

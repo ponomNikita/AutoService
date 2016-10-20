@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using AutoService.DAL;
 using AutoService.DAL.FilterModel;
 using AutoService.DAL.Models;
-using AutoService.Logger;
 using AutoService.Services.ViewModels;
 using AutoService.Security;
 using AutoService.Services.Enums;
