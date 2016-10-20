@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutoService.ViewModels.Account
+namespace AutoService.Services.ViewModels
 {
     public class UserViewModel
     {

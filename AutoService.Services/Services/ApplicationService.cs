@@ -102,5 +102,10 @@ namespace AutoService.Services
 
             return applications.AsEnumerable();
         }
+
+        public void Create()
+        {
+            
+        }
     }
 }

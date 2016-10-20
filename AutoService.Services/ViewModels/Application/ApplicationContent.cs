@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using AutoService.DAL.FilterModel;
 
-namespace AutoService.ViewModels.Application
+namespace AutoService.Services.ViewModels
 {
     public class ApplicationContent
     {

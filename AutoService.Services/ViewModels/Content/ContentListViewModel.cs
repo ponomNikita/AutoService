@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace AutoService.ViewModels.Content
+namespace AutoService.Services.ViewModels
 {
     public class ContentListViewModel
     {

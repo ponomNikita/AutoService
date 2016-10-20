@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using AutoService.DAL;
 using AutoService.DAL.Models;
-using AutoService.ViewModels.Account;
+using AutoService.Services.ViewModels;
 using AutoService.Logger;
 
 namespace AutoService.Controllers

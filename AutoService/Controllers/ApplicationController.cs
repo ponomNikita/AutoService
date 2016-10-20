@@ -8,7 +8,7 @@ using AutoService.DAL;
 using AutoService.DAL.FilterModel;
 using AutoService.DAL.Models;
 using AutoService.Logger;
-using AutoService.ViewModels.Application;
+using AutoService.Services.ViewModels;
 using AutoService.Security;
 using AutoService.Services.Enums;
 using AutoService.Services.Interfaces;
@@ -52,7 +52,7 @@ namespace SinglePageSite.Controllers
 
             Application newItem = new Application();
             model.Copy(newItem);
-            newItem.CreatedAt = DateTime.Now;
+            newItem.CreatedAt = timeProvider.Now;
             newItem.CreatedBy = User.Identity.Name;
 
             if (!appService.IsFreeTime(newItem.Date))

@@ -1,8 +1,9 @@
 ﻿using System;
-using AutoService.ViewModels.Application;
+using AutoService.Services.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 
-namespace AutoService.Web.Tests
+namespace AutoService.Services.Test
 {
     [TestFixture]
     public class StringTimeToDateTime

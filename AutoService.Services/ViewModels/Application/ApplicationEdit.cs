@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutoService.ViewModels.Application
+namespace AutoService.Services.ViewModels
 {
     public class ApplicationEdit : AutoService.DAL.Models.Application
     {

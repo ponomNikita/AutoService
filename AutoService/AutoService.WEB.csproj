@@ -141,12 +141,6 @@
     <Compile Include="Security\AuthorizeUserAttribute.cs" />
     <Compile Include="Security\Security.cs" />
     <Compile Include="Services\AttachmentService.cs" />
-    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Account\UserViewModel.cs" />
-    <Compile Include="ViewModels\Application\ApplicationContent.cs" />
-    <Compile Include="ViewModels\Application\ApplicationEdit.cs" />
-    <Compile Include="ViewModels\Content\ContentListViewModel.cs" />
-    <Compile Include="ViewModels\Content\ItemEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

@@ -1,6 +1,6 @@
 ﻿using AutoService.DAL;
 using AutoService.DAL.Models;
-using AutoService.ViewModels.Content;
+using AutoService.Services.ViewModels;
 using System;
 using System.Web.Configuration;
 using System.Web.Mvc;
