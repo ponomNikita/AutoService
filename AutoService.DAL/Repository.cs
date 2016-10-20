@@ -60,5 +60,11 @@ namespace AutoService.DAL
         {
             db.Entry(item).State = EntityState.Modified;
         }
+
+
+        public void Save()
+        {
+            db.SaveChanges();
+        }
     }
 }

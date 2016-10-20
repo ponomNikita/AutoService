@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoService.DAL.Models;
 using AutoService.Services.Enums;
 using AutoService.DAL.FilterModel;
+using AutoService.Services.ViewModels;
 
 namespace AutoService.Services.Interfaces
 {
@@ -15,6 +16,7 @@ namespace AutoService.Services.Interfaces
         Application GetById(int id);
         IEnumerable<Application> GetAll();
         IEnumerable<Application> GetFiltered(ApplicationFilter filter);
+        string Create(ApplicationEdit model);
 
     }
 }

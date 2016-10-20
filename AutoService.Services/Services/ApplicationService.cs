@@ -17,12 +17,14 @@ namespace AutoService.Services
     {
         private readonly IRepository<Application> repository;
         private readonly IDateTimeProvider timeProvider;
+        private User currentUser;
 
-        public ApplicationService(IRepository<Application> repo, IDateTimeProvider dateTimeProvider)
+        public ApplicationService(IRepository<Application> _repository, IDateTimeProvider dateTimeProvider, User _currentUser)
         {
-            repository = repo;
+            repository = _repository;
             timeProvider = dateTimeProvider;
             timeProvider = dateTimeProvider;
+            currentUser = _currentUser;
         }
 
         public bool IsFreeTime(DateTime dateTime)
@@ -104,12 +106,24 @@ namespace AutoService.Services
             return applications.AsEnumerable();
         }
 
-        //public string Create(ApplicationEdit model)
-        //{
-        //    //Application newItem = new Application();
-        //    //model.Copy(newItem);
-        //    //newItem.CreatedAt = timeProvider.Now;
-        //    //newItem.CreatedBy = User.Identity.Name;
-        //}
+        public string Create(ApplicationEdit model)
+        {
+            Application newItem = new Application();
+            model.Copy(newItem);
+            newItem.CreatedAt = timeProvider.Now;
+            newItem.CreatedBy = currentUser != null ? currentUser.Login : string.Empty;
+
+            if (!IsFreeTime(newItem.Date))
+            {
+                return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
+            }
+
+            //Logger.Info("Запись в бд новой заявки...");
+            repository.Create(newItem);
+            repository.Save();
+            //Logger.Info("Успешно!");
+            
+            return string.Empty;
+        }
     }
 }

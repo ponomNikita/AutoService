@@ -28,7 +28,7 @@ namespace AutoService.Controllers
         {
             timeProvider = new DateTimeProvider();
             uow = new AutoServiceUnitOfWork();
-            appService = new ApplicationService(uow.Applications, timeProvider);
+            appService = new ApplicationService(uow.Applications, timeProvider, currentUser);
         }
         [HttpGet]
         [AuthorizeUser]
@@ -49,21 +49,12 @@ namespace AutoService.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            Application newItem = new Application();
-            model.Copy(newItem);
-            newItem.CreatedAt = timeProvider.Now;
-            newItem.CreatedBy = currentUser.Login;
-
-            if (!appService.IsFreeTime(newItem.Date))
+            var modelError = appService.Create(model);
+            if (!string.IsNullOrWhiteSpace(modelError))
             {
-                ModelState.AddModelError("", "К сожалению это время занято. Пожалуйста, выберете другую дату или время");
+                ModelState.AddModelError("", modelError);
                 return View(model);
             }
-
-            Logger.Info("Запись в бд новой заявки...");
-            uow.Applications.Create(newItem);
-            uow.Save();
-            Logger.Info("Успешно!");
 
             //TODO Сделать редирект на список заявок клиента, когда он будет реализован
             return RedirectToAction("Index", "Home");

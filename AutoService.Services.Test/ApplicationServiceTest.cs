@@ -58,7 +58,7 @@ namespace AutoService.Services.Test
 
             sub.GetAll().Returns(applications.AsQueryable());
             datetimeSub.Now.Returns(new DateTime(2016, 10, 10, 23, 19, 0));
-            appService = new ApplicationService(sub, datetimeSub);
+            appService = new ApplicationService(sub, datetimeSub, null);
         }
 
         [Test]
