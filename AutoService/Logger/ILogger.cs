@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Logger
 {
-    interface ILogger
+    public interface ILogger
     {
         void Info(string log);
         void Debug(string log);

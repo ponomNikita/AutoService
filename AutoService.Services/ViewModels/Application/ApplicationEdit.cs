@@ -62,7 +62,7 @@ namespace AutoService.Services.ViewModels
                         datetime = null;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     datetime = null;
                 }

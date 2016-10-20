@@ -14,21 +14,20 @@ using AutoService.Services.Enums;
 using AutoService.Services.Interfaces;
 using AutoService.Services;
 using AutoService.Services.Services;
+using AutoService.WEB.Controllers;
 
-namespace SinglePageSite.Controllers
+namespace AutoService.Controllers
 {
-    public class ApplicationController : Controller
+    public class ApplicationController : BaseController
     {
-        private ILogger Logger;
-        private UnitOfWork uow;
+        private IAutoServiceUnitOfWork uow;
         private IApplicationService appService;
         private IDateTimeProvider timeProvider;
 
         public ApplicationController()
         {
             timeProvider = new DateTimeProvider();
-            Logger = new Logger();
-            uow = new UnitOfWork();
+            uow = new AutoServiceUnitOfWork();
             appService = new ApplicationService(uow.Applications, timeProvider);
         }
         [HttpGet]
@@ -53,7 +52,7 @@ namespace SinglePageSite.Controllers
             Application newItem = new Application();
             model.Copy(newItem);
             newItem.CreatedAt = timeProvider.Now;
-            newItem.CreatedBy = User.Identity.Name;
+            newItem.CreatedBy = currentUser.Login;
 
             if (!appService.IsFreeTime(newItem.Date))
             {

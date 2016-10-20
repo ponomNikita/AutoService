@@ -10,7 +10,7 @@ namespace AutoService.Security
 {
     public class AuthorizeUserAttribute : AuthorizeAttribute
     {
-        public string Roles { get; set; }
+        public new string Roles { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

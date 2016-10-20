@@ -53,10 +53,12 @@
   <ItemGroup>
     <Compile Include="Enums\ApplicationsActionType.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IApplicationService.cs" />
     <Compile Include="Interfaces\IDateTimeProvider.cs" />
     <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\DateTimeProvider.cs" />
     <Compile Include="Services\SettingService.cs" />

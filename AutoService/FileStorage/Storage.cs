@@ -11,7 +11,7 @@ namespace AutoService.FileStorage
     {
         public static string GetImagePathById(int attachmentId)
         {
-            UnitOfWork uow = new UnitOfWork();
+            IAutoServiceUnitOfWork uow = new AutoServiceUnitOfWork();
 
             var attachment = uow.Attachments.Get(attachmentId);
             var relativePath = attachment.RelativePath ?? string.Empty;

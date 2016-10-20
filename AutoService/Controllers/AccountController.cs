@@ -8,18 +8,17 @@ using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Services.ViewModels;
 using AutoService.Logger;
+using AutoService.WEB.Controllers;
 
 namespace AutoService.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        UnitOfWork uow;
-        ILogger Logger;
+        IAutoServiceUnitOfWork uow;
         
         public AccountController()
         {
-            uow = new UnitOfWork();
-            Logger = new AutoService.Logger.Logger();
+            uow = new AutoServiceUnitOfWork();
         }
         
         [HttpGet]
@@ -104,10 +103,10 @@ namespace AutoService.Controllers
             var password = GetHashString(model.Password);
             if (uow.Users.GetAll().Any(x => x.Login.ToUpper() == model.Login.ToUpper() && x.Password.ToUpper() == password.ToUpper()))
             {
-                User currentUser = uow.Users.GetAll().FirstOrDefault(x => x.Login.ToUpper() == model.Login.ToUpper() && x.Password.ToUpper() == password.ToUpper());
-                FormsAuthentication.SetAuthCookie(currentUser.Login, model.RememberMe);
+                User currUser = uow.Users.GetAll().FirstOrDefault(x => x.Login.ToUpper() == model.Login.ToUpper() && x.Password.ToUpper() == password.ToUpper());
+                FormsAuthentication.SetAuthCookie(currUser.Login, model.RememberMe);
 
-                Logger.Info(string.Format("Выполнен вход пользователем {0}", currentUser.Login));
+                Logger.Info(string.Format("Выполнен вход пользователем {0}", currUser.Login));
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -120,7 +119,7 @@ namespace AutoService.Controllers
 
         public ActionResult Logout()
         {
-            Logger.Info(string.Format("Пользователь {0} вышел из системы", User.Identity.Name));
+            Logger.Info(string.Format("Пользователь {0} вышел из системы", currentUser.Login));
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

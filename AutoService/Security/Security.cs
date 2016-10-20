@@ -15,7 +15,7 @@ namespace AutoService.Security
         /// </summary>
         public static bool HasRole(int roleCode, string currentUserLogin)
         {
-            using (var uow = new UnitOfWork())
+            using (var uow = new AutoServiceUnitOfWork())
             {
                 if (string.IsNullOrWhiteSpace(currentUserLogin))
                 {
@@ -36,7 +36,7 @@ namespace AutoService.Security
 
         public static string[] GetUserRoles(string login)
         {
-            using (var uow = new UnitOfWork())
+            using (var uow = new AutoServiceUnitOfWork())
             {
                 User user = uow.Users.GetAll().FirstOrDefault(t => t.Login.ToUpper() == login.ToUpper());
                 if (user == null)

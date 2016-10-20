@@ -7,7 +7,7 @@ using Tbs16.DAL;
 
 namespace AutoService.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class AutoServiceUnitOfWork : IAutoServiceUnitOfWork
     {
         private DBContext db = new DBContext();
         private IRepository<User> userRepositrory;

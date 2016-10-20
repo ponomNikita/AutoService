@@ -9,22 +9,22 @@ namespace AutoService.Services
 {
     public class SettingService : ISettingService
     {
+        private IAutoServiceUnitOfWork uow;
+
+        public SettingService()
+        {
+            uow = new AutoServiceUnitOfWork();
+        }
         public bool IsModuleActive(string moduleName)
         {
-            using (var uow = new UnitOfWork())
-            {
-                var module = uow.Modules.GetAll().FirstOrDefault(t => t.Name == moduleName);
-                return module != null ? module.IsActive : false;
-            }
+            var module = uow.Modules.GetAll().FirstOrDefault(t => t.Name == moduleName);
+            return module != null ? module.IsActive : false;
         }
 
         public bool IsModuleActive(int Code)
         {
-            using (var uow = new UnitOfWork())
-            {
-                var module = uow.Modules.GetAll().FirstOrDefault(t => t.Code == Code);
-                return module != null ? module.IsActive : false;
-            }
+            var module = uow.Modules.GetAll().FirstOrDefault(t => t.Code == Code);
+            return module != null ? module.IsActive : false;
         }
 
         public void SetModuleActive(string moduleName)

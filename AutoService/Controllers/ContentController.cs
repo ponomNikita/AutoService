@@ -8,18 +8,17 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web.Services;
 using AutoService.Logger;
+using AutoService.WEB.Controllers;
 
 namespace AutoService.Controllers
 {
-    public class ContentController : Controller
+    public class ContentController : BaseController
     {
-        UnitOfWork uow;
-        ILogger Logger;
+        IAutoServiceUnitOfWork uow;
 
         public ContentController()
         {
-            uow = new UnitOfWork();
-            Logger = new Logger.Logger();
+            uow = new AutoServiceUnitOfWork();
         }
         [HttpGet]
         public ActionResult Index()
@@ -46,7 +45,7 @@ namespace AutoService.Controllers
             newItem.Name = model.Name;
             newItem.Price = model.Price;
             newItem.CreatedDateTime = DateTime.Now;
-            newItem.CreatedBy = User.Identity.Name;
+            newItem.CreatedBy = currentUser.Login;
             newItem.Description = model.Description;
             newItem.isActive = model.isActive;
             newItem.PreviewAttachmentId = 1; // TODO: Change 1 to selected preview attachment

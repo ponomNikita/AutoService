@@ -9,6 +9,7 @@ using AutoService.Services.Interfaces;
 using AutoService.Services.Enums;
 using AutoService.Services;
 using AutoService.Services.Services;
+using AutoService.Services.ViewModels;
 
 namespace AutoService.Services
 {
@@ -103,9 +104,12 @@ namespace AutoService.Services
             return applications.AsEnumerable();
         }
 
-        public void Create()
-        {
-            
-        }
+        //public string Create(ApplicationEdit model)
+        //{
+        //    //Application newItem = new Application();
+        //    //model.Copy(newItem);
+        //    //newItem.CreatedAt = timeProvider.Now;
+        //    //newItem.CreatedBy = User.Identity.Name;
+        //}
     }
 }
