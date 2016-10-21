@@ -15,10 +15,6 @@ namespace AutoService.Controllers
 {
     public class AccountController : BaseController
     {     
-        public AccountController()
-        {
-        }
-        
         [HttpGet]
         public ActionResult CreateUser()
         {
@@ -63,7 +59,8 @@ namespace AutoService.Controllers
 
             if (!string.IsNullOrWhiteSpace(modelError))
             {
-                return View();
+                ModelState.AddModelError("", modelError);
+                return View(model);
             }
 
             return RedirectToAction("Index", "Home");
