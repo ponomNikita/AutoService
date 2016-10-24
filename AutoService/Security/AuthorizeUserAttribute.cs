@@ -5,16 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoService.DAL.Models;
+using AutoService.Services.Interfaces;
+using AutoService.Services.Services;
 
 namespace AutoService.Security
 {
     public class AuthorizeUserAttribute : AuthorizeAttribute
     {
+        private IPermissionService permissionService {
+            get { return new PermissionService(); }
+        }
         public new string Roles { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var isAuthorized = base.AuthorizeCore(httpContext);
+            
             if (!isAuthorized)
             {
                 return false;
@@ -26,7 +32,7 @@ namespace AutoService.Security
             }
 
             var roles = Roles.Split(new char[]{',', ' '}, StringSplitOptions.RemoveEmptyEntries);
-            var userRoles = Security.GetUserRoles(httpContext.User.Identity.Name);
+            var userRoles = permissionService.GetUserRoles(httpContext.User.Identity.Name);
 
             if (userRoles.Any(t => roles.Any(o => o == t)))
             {

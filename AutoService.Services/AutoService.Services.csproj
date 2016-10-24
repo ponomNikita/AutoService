@@ -53,21 +53,22 @@
   <ItemGroup>
     <Compile Include="Enums\ApplicationsActionType.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="Enums\Roles.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IApplicationService.cs" />
     <Compile Include="Interfaces\IDateTimeProvider.cs" />
+    <Compile Include="Interfaces\IPermissionService.cs" />
     <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\DateTimeProvider.cs" />
+    <Compile Include="Services\PermissionService.cs" />
     <Compile Include="Services\SettingService.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\UserViewModel.cs" />
     <Compile Include="ViewModels\Application\ApplicationContent.cs" />
     <Compile Include="ViewModels\Application\ApplicationEdit.cs" />
-    <Compile Include="ViewModels\Content\ContentListViewModel.cs" />
-    <Compile Include="ViewModels\Content\ItemEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

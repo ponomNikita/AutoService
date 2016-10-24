@@ -19,11 +19,6 @@ namespace Tbs16.DAL.Migrations
             // Добавление модулей
             context.Modules.AddOrUpdate(
                 p => p.Code,
-              new Module {
-                  Code = 1,
-                  Name = "AddingContentFeatures",
-                  Description = "Добавляет весь функционал контента"
-              },
               new Module
               {
                   Code = 2,

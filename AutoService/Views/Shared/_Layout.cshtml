@@ -30,14 +30,6 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse navbar-menubuilder">
-                <ul class="nav navbar-nav navbar-left">
-                    @if (settingsService.IsModuleActive((int)SettingModules.AddingContentFeatures))
-                    {
-                        <li>
-                            <a href="/Content/Index" class="navbar-brand">Content</a>
-                        </li>
-                    }
-                </ul>
                 @if (settingsService.IsModuleActive((int)SettingModules.AddingSearchToNavigationBar))
                 {
                     <form class="navbar-form navbar-right" role="search">

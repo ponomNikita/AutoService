@@ -15,8 +15,6 @@ namespace AutoService.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User_Role> User_Roles { get; set; }
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Application> Applications { get; set; }
     }

@@ -18,15 +18,16 @@ namespace AutoService.Services
     {
         private readonly IRepository<Application> repository;
         private readonly IDateTimeProvider timeProvider;
+        private IPermissionService permissionService;
         private User currentUser;
         private ILogger Logger;
 
-        public ApplicationService(IRepository<Application> _repository, IDateTimeProvider dateTimeProvider, User _currentUser)
+        public ApplicationService(IRepository<Application> _repository, IDateTimeProvider _timeProvider, User _currentUser)
         {
             repository = _repository;
-            timeProvider = dateTimeProvider;
-            timeProvider = dateTimeProvider;
+            timeProvider = _timeProvider;
             currentUser = _currentUser;
+            permissionService = new PermissionService();
             Logger = new Logger();
         }
 
@@ -90,7 +91,8 @@ namespace AutoService.Services
                     applications = applications.Where(t => t.CarNumber.ToLower().Contains(filter.CarNumber.ToLower()));
                 }
 
-                if (!string.IsNullOrWhiteSpace(filter.CreatedBy))
+                if (!string.IsNullOrWhiteSpace(filter.CreatedBy) 
+                    && (filter.CreatedBy == currentUser.Login || permissionService.HasRole((int)Roles.Admin, currentUser.Login)))
                 {
                     applications = applications.Where(t => t.CreatedBy.ToLower().Contains(filter.CreatedBy.ToLower()));
                 }

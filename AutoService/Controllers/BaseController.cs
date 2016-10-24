@@ -18,13 +18,29 @@ namespace AutoService.WEB.Controllers
         protected User currentUser;
         protected IAccountService accountService;
         protected ILogger Logger;
-
-        protected override void Initialize(RequestContext requestContext)
+        public new HttpContextBase HttpContext
         {
-            base.Initialize(requestContext);
-            accountService = new AccountService(requestContext.HttpContext.User);
+            get
+            {
+                HttpContextWrapper context =
+                    new HttpContextWrapper(System.Web.HttpContext.Current);
+                return (HttpContextBase)context;
+            }
+        }
+
+        public BaseController()
+        {
+            accountService = new AccountService(HttpContext.User);
             currentUser = accountService.GetCurrentUser();
             Logger = new Logger();
         }
+
+        //protected override void Initialize(RequestContext requestContext)
+        //{
+        //    base.Initialize(requestContext);
+        //    accountService = new AccountService(requestContext.HttpContext.User);
+        //    currentUser = accountService.GetCurrentUser();
+        //    Logger = new Logger();
+        //}
     }
 }

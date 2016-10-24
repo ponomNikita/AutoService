@@ -24,11 +24,13 @@ namespace AutoService.Controllers
         private IDateTimeProvider timeProvider;
 
         public ApplicationController()
+            :base()
         {
             timeProvider = new DateTimeProvider();
             uow = new AutoServiceUnitOfWork();
             appService = new ApplicationService(uow.Applications, timeProvider, currentUser);
         }
+
         [HttpGet]
         [AuthorizeUser]
         public ActionResult Create(int requestType = 0)
@@ -56,10 +58,11 @@ namespace AutoService.Controllers
             }
 
             //TODO Сделать редирект на список заявок клиента, когда он будет реализован
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Application", new { CreatedBy = currentUser.Login});
         }
 
         [HttpGet]
+        [AuthorizeUser]
         public ActionResult Index(ApplicationFilter filter)
         {
             ApplicationContent model = new ApplicationContent()
