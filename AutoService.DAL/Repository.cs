@@ -9,7 +9,7 @@ using AutoService.DAL.Models;
 
 namespace AutoService.DAL
 {
-    class Repository<T> : IRepository<T>
+    public class Repository<T> : IRepository<T>
         where T : TEntity
     {
         DBContext db;
