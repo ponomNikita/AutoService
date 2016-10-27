@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.ApplicationServices;
 using System.Web.Mvc;
 using AutoService.DAL;
+using AutoService.DAL;
 using AutoService.DAL.FilterModel;
 using AutoService.DAL.Models;
 using AutoService.Services.ViewModels;
@@ -19,16 +20,14 @@ namespace AutoService.Controllers
 {
     public class ApplicationController : BaseController
     {
-        private IAutoServiceUnitOfWork uow;
         private IApplicationService appService;
         private IDateTimeProvider timeProvider;
 
         public ApplicationController()
             :base()
         {
-            timeProvider = new DateTimeProvider();
-            uow = new AutoServiceUnitOfWork();
-            appService = new ApplicationService(uow.Applications, timeProvider, currentUser);
+            timeProvider = ServicesFactory.CreateDateTimeProvider();
+            appService = ServicesFactory.CreateApplicationService(new Repository<Application>(DBContext.GetDBContext()), timeProvider, currentUser);
         }
 
         [HttpGet]

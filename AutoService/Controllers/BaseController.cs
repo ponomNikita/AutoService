@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoService.DAL.Models;
 using AutoService.Services.Interfaces;
 using AutoService.Services.Services;
+using AutoService.Services;
 using System.Web;
 using System.Web.Routing;
 using AutoService.Infrastructure.Logger;
@@ -30,17 +31,9 @@ namespace AutoService.WEB.Controllers
 
         public BaseController()
         {
-            accountService = new AccountService(HttpContext.User);
+            accountService = ServicesFactory.CreateAccountService(HttpContext.User);
             currentUser = accountService.GetCurrentUser();
             Logger = new Logger();
         }
-
-        //protected override void Initialize(RequestContext requestContext)
-        //{
-        //    base.Initialize(requestContext);
-        //    accountService = new AccountService(requestContext.HttpContext.User);
-        //    currentUser = accountService.GetCurrentUser();
-        //    Logger = new Logger();
-        //}
     }
 }

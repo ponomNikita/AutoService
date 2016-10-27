@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="DBContext.cs" />
     <Compile Include="FilterModel\ApplicationFilter.cs" />
-    <Compile Include="IAutoServiceUnitOfWork.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\IAutoServiceUnitOfWork.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\Role.cs" />
     <Compile Include="Models\Account\User.cs" />
@@ -54,8 +54,8 @@
     <Compile Include="Models\Settings\Module.cs" />
     <Compile Include="Models\Shared\_Exception.cs" />
     <Compile Include="Models\TEntity.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="AutoServiceUnitOfWork.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="UnitOfWorks\AutoServiceUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

@@ -31,13 +31,10 @@ namespace AutoService.Services.Services
 
         public User GetCurrentUser()
         {
-            using (var uow = new AutoServiceUnitOfWork())
-            {
-                if (User == null)
-                    return null;
+            if (User == null)
+                return null;
 
-                return uow.Users.GetAll().FirstOrDefault(t => t.Login == User.Identity.Name);
-            }
+            return uow.Users.GetAll().FirstOrDefault(t => t.Login == User.Identity.Name);
         }
 
         public User CreateUser(UserViewModel model, out string modelErrorMsg)

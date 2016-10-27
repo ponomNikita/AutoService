@@ -11,6 +11,7 @@ namespace Tbs16.DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "AutoService.DAL.DBContext";
         }
 

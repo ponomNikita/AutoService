@@ -27,7 +27,7 @@ namespace AutoService.Services
             repository = _repository;
             timeProvider = _timeProvider;
             currentUser = _currentUser;
-            permissionService = new PermissionService();
+            permissionService = ServicesFactory.CreatePermissionService();
             Logger = new Logger();
         }
 
