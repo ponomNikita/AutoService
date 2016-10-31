@@ -24,7 +24,7 @@ namespace AutoService.DAL
 
         public bool Any(Expression<Func<T, bool>> predicate)
         {
-            return dbSet.Any(predicate);
+            return GetAll().Any(predicate);
         }
 
         public void Create(T item)

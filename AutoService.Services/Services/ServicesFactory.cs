@@ -30,7 +30,7 @@ namespace AutoService.Services
 
         public static IPermissionService CreatePermissionService()
         {
-            return new PermissionService();
+            return new PermissionService(new AutoServiceUnitOfWork());
         }
 
         public static ISettingService CreateSettingService()
