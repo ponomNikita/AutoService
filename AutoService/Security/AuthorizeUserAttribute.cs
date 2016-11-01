@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Services.Interfaces;
 using AutoService.Services.Services;
@@ -13,7 +14,7 @@ namespace AutoService.Security
     public class AuthorizeUserAttribute : AuthorizeAttribute
     {
         private IPermissionService permissionService {
-            get { return new PermissionService(); }
+            get { return new PermissionService(new AutoServiceUnitOfWork()); }
         }
         public new string Roles { get; set; }
 
