@@ -22,18 +22,25 @@ namespace AutoService.Controllers
     {
         private IApplicationService appService;
         private IDateTimeProvider timeProvider;
+        private IPermissionService permissionService;
 
         public ApplicationController()
             :base()
         {
             timeProvider = ServicesFactory.CreateDateTimeProvider();
             appService = ServicesFactory.CreateApplicationService(new Repository<Application>(DBContext.GetDBContext()), timeProvider, currentUser);
+            permissionService = ServicesFactory.CreatePermissionService();
         }
 
         [HttpGet]
         [AuthorizeUser]
         public ActionResult Create(int requestType = 0)
         {
+            if (permissionService.HasRole((int) Roles.Admin, currentUser.Login))
+            {
+                throw new AccessViolationException("Польтователь с ролью администратор не может создавать заявки");
+            }
+
             ApplicationEdit newApplication = new ApplicationEdit()
             {
                 RequestType = requestType,
@@ -56,7 +63,6 @@ namespace AutoService.Controllers
                 return View(model);
             }
 
-            //TODO Сделать редирект на список заявок клиента, когда он будет реализован
             return RedirectToAction("Index", "Application", new { CreatedBy = currentUser.Login});
         }
 
