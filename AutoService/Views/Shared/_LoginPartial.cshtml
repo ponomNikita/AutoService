@@ -1,5 +1,10 @@
-﻿@{
+﻿@using AutoService.Services
+@using AutoService.Services.Interfaces
+@using Roles = AutoService.Services.Enums.Roles
+@{
     var userLoginName = User.Identity.Name;
+    IPermissionService permissionService = ServicesFactory.CreatePermissionService();
+    bool isAdmin = permissionService.HasRole((int) Roles.Admin, userLoginName);
 }
 <script>
     $(document).ready(function () {
@@ -29,7 +34,10 @@
             </a>
             <ul class="dropdown-menu dropdown-custom">
                 <li><a href="#">Редактирование профиля</a></li>
-                <li><a href="/Application/Index?CreatedBy=@User.Identity.Name">Мои заявки</a></li>
+                @if (!isAdmin)
+                {
+                    <li><a href="/Application/Index?CreatedBy=@User.Identity.Name">Мои заявки</a></li>
+                }
             </ul>
         </li>
         <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>

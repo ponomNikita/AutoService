@@ -1,7 +1,14 @@
 ﻿@using AutoService.Enums
+@using AutoService.Services
 @using AutoService.Services.Enums
+@using AutoService.Services.Interfaces
+@using RequestTypes = AutoService.Services.Enums.RequestTypes
+@using Roles = AutoService.Services.Enums.Roles
 @model AutoService.Services.ViewModels.ApplicationContent
-
+@{
+    IPermissionService permissionService = ServicesFactory.CreatePermissionService();
+    bool isAdmin = permissionService.HasRole((int) Roles.Admin, User.Identity.Name);
+}
 <div class="custom-form-group">
     <div class="container" style="width:100%">
         <table class="table">
@@ -10,6 +17,7 @@
                 <th>Статус</th>
                 <th>Модель авто</th>
                 <th>Дата записи</th>
+                <td></td>
             </tr>
             @foreach (var app in Model.Items)
             {
@@ -18,6 +26,29 @@
                     <td>@(app.Status.HasValue ? ((ApplicationStatus)app.Status.Value).Description() : string.Empty)</td>
                     <td>@(app.CarModel)</td>
                     <td>@(app.Date)</td>
+                    
+                    
+                    <td>
+                        @if (isAdmin || !app.IsApproved)
+                        {
+                            @Html.ActionLink("Редактировать", "Edit", "Application", new {id = app.id},
+                                new {role = "button", @class = "btn btn-warning", style = "padding:2px; margin:1px"})
+                        }
+                        @if (isAdmin)
+                        {
+                            @Html.ActionLink("Удалить", "Delete", "Application", new {id = app.id},
+                                new
+                                {
+                                    role = "button", @class = "btn btn-danger", style = "padding:2px; margin:1px",
+                                    onclick = "return confirm('Вы действительно хотите удалить заявку?');"
+                                })
+                            if (!app.IsApproved)
+                            {
+                                @Html.ActionLink("Утвердить", "Approve", "Application", new {id = app.id},
+                                    new {role = "button", @class = "btn btn-info", style = "padding:2px; margin:1px"})
+                            }
+                        }
+                    </td>
                 </tr>
             }
         </table>

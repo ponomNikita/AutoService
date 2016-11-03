@@ -1,9 +1,21 @@
 ﻿@using System.Web.Configuration
+@using AutoService.Services
+@using AutoService.Services.Interfaces
+@using Roles = AutoService.Services.Enums.Roles
 @model AutoService.Services.ViewModels.ApplicationEdit
 @{
+    IPermissionService permissionService = ServicesFactory.CreatePermissionService();
+    IAccountService accountService = ServicesFactory.CreateAccountService(User);
+
     var timepickerStep = WebConfigurationManager.AppSettings["scheduleStep"];
     var timepickerStartTime = WebConfigurationManager.AppSettings["scheduleStartTime"];
     var timepickerEndTime = WebConfigurationManager.AppSettings["scheduleEndTime"];
+
+    bool IsEdit = Model.id != 0;
+    bool isAdmin = permissionService.HasRole((int) Roles.Admin, User.Identity.Name);
+
+    string formMethod = IsEdit ? "Edit" : "Create";
+    var client = accountService.GetUserByLogin(Model.CreatedBy);
 }
 <script>
     $(document)
@@ -11,6 +23,19 @@
             configureTimePicker(@timepickerStep, '@timepickerStartTime', '@timepickerEndTime');
             $('#datepicker').removeAttr("data-val-date");
             $('.Date').attr("value", "");
+
+            if ('@isAdmin' === 'True') {
+                $("#CarModel").prop('readonly', true);
+                $("#CarNumber").prop('readonly', true);
+                $("#timepicker").prop('readonly', true);
+                $("#datepicker").prop('readonly', true);
+                $("#Note").prop('readonly', true);
+
+                $("#ClientName").prop('readonly', true);
+                $("#ClientPhoneNumber").prop('readonly', true);
+                $("#ClientEmail").prop('readonly', true);
+                $("#ClientAddress").prop('readonly', true);
+            } 
         });
 </script>
 <div class="custom-form-group">
@@ -24,7 +49,7 @@
             @Html.ValidationSummary(true)
         </div>
     </div>
-    @using (Html.BeginForm("Create", "Application", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createApplicationForm" }))
+    @using (Html.BeginForm(formMethod, "Application", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createApplicationForm" }))
     {
         @Html.HiddenFor(m => m.RequestType)
         @Html.HiddenFor(m => m.Status)
@@ -63,10 +88,37 @@
                     @Html.ValidationMessageFor(m => m.Note)
                 </div>
             </div>
-            <div class="row">
-                <button type="submit" class="btn btn-primary col-lg-1 col-lg-offset-4 col-md-1 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-2">Создать</button>
-                <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-3 col-sm-2" role="button">Отмена</a>
-            </div>
+            
+            @if (isAdmin && client != null)
+            {
+                <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
+                    <h3>Информация о клиенте</h3>
+                </div>
+                <div class="form-group">
+                    @Html.Label("ClientName", "Имя", new { @class = "control-label" })
+                    @Html.TextBox("ClientName", client.GetFullName(), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ClientPhoneNumber", "Телефон", new { @class = "control-label" })
+                    @Html.TextBox("ClientPhoneNumber", client.PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ClientEmail", "Email", new { @class = "control-label" })
+                    @Html.TextBox("ClientEmail", client.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ClientAddress", "Адрес", new { @class = "control-label" })
+                    @Html.TextArea("ClientAddress", client.Address, new { @class = "form-control" })
+                </div>
+            }
+
+            @if (!isAdmin)
+            {
+                <div class="row">
+                    <button type="submit" class="btn btn-primary col-lg-1 col-lg-offset-4 col-md-1 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-2">Сохранить</button>
+                    <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-3 col-sm-2" role="button">Отмена</a>
+                </div>
+            }
         </div>
     }
 </div>

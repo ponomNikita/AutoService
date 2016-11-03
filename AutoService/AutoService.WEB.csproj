@@ -128,7 +128,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\EnumMethods.cs" />
-    <Compile Include="Enums\RequestTypes.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Enums\SettingModules.cs" />
     <Compile Include="Global.asax.cs">
@@ -257,6 +256,7 @@
     <Content Include="Views\Application\Edit.cshtml" />
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Application\ApplicationList.cshtml" />
+    <Content Include="Views\Application\EditMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

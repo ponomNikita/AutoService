@@ -1,0 +1,9 @@
+﻿@model AutoService.Services.ViewModels.ApplicationEdit
+@{
+    ViewBag.Title = "Редактирование заявки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ReturnUrl = "/Views/Account/LoginForm.cshtml";
+}
+
+@Html.Partial("Edit", Model);
+

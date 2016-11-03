@@ -13,10 +13,13 @@ namespace AutoService.Services.Interfaces
         void ChangeStatus(int id, ApplicationStatus status);
         void CoordinationRequest(int ticketId, ApplicationsActionType actionType, string description);
         void CoordinationResponse(int ticketId);
+        void Delete(int id);
+        void Approve(int id);
         Application GetById(int id);
         IEnumerable<Application> GetAll();
         IEnumerable<Application> GetFiltered(ApplicationFilter filter);
         string Create(ApplicationEdit model);
+        string Edit(ApplicationEdit model);
 
     }
 }

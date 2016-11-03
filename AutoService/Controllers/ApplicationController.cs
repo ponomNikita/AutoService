@@ -78,6 +78,49 @@ namespace AutoService.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AuthorizeUser(Roles = "admin")]
+        public ActionResult Delete(int id)
+        {
+            appService.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [AuthorizeUser]
+        public ActionResult Edit(int id)
+        {
+            ApplicationEdit application = new ApplicationEdit(appService.GetById(id));
+
+            return View("EditMain", application);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ApplicationEdit model)
+        {
+            if (!ModelState.IsValid)
+                return View("EditMain", model);
+
+            var modelError = appService.Edit(model);
+            if (!string.IsNullOrWhiteSpace(modelError))
+            {
+                ModelState.AddModelError("", modelError);
+                return View("EditMain", model);
+            }
+
+            return View("EditMain", model);
+        }
+
+        [HttpGet]
+        [AuthorizeUser(Roles = "admin")]
+        public ActionResult Approve(int id)
+        {
+            appService.Approve(id);
+
+            return RedirectToAction("Index");
+        }
+
         public IEnumerable<Application> GetFiltredContent(ApplicationFilter filter)
         {
             return appService.GetFiltered(filter);

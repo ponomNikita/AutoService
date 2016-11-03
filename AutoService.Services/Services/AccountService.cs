@@ -37,6 +37,11 @@ namespace AutoService.Services.Services
             return uow.Users.GetAll().FirstOrDefault(t => t.Login == User.Identity.Name);
         }
 
+        public User GetUserByLogin(string login)
+        {
+            return uow.Users.GetAll().FirstOrDefault(u => u.Login.Equals(login));
+        }
+
         public User CreateUser(UserViewModel model, out string modelErrorMsg)
         {
             if (uow.Users.GetAll().Any(x => x.Login.ToUpper() == model.Login.ToUpper()))

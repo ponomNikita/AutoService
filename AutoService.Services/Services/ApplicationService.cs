@@ -54,6 +54,22 @@ namespace AutoService.Services
             throw new NotImplementedException();
         }
 
+        public void Delete(int id)
+        {
+            repository.Delete(id);
+            repository.Save();
+        }
+
+        public void Approve(int id)
+        {
+            var application = GetById(id);
+            application.IsApproved = true;
+            application.Status = application.RequestType == (int)RequestTypes.Diagnostic ? 
+                (int)ApplicationStatus.WaitForDiagnostic : (int)ApplicationStatus.WaitForReparing;
+
+            repository.Save();
+        }
+
 
         public Application GetById(int id)
         {
@@ -128,6 +144,24 @@ namespace AutoService.Services
             repository.Save();
             Logger.Info("Успешно!");
             
+            return string.Empty;
+        }
+
+        public string Edit(ApplicationEdit model)
+        {
+            Application item = new Application();
+            model.Copy(item);
+
+            if (!IsFreeTime(item.Date))
+            {
+                return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
+            }
+
+            Logger.Info("Запись в бд новой заявки...");
+            repository.Update(item);
+            repository.Save();
+            Logger.Info("Успешно!");
+
             return string.Empty;
         }
     }

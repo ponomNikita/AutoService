@@ -11,6 +11,7 @@ namespace AutoService.Services.Interfaces
     public interface IAccountService
     {
         User GetCurrentUser();
+        User GetUserByLogin(string login);
         User CreateUser(UserViewModel model, out string modelErrorMsg);
         void Login(LoginViewModel model, out string modelError);
         void Logout();

@@ -11,5 +11,9 @@ namespace AutoService.Services.Enums
     {
         [Description("Ожидает подтверждения")]
         WaitForApprove = 0,
+        [Description("Ожидает даты диагностики")]
+        WaitForDiagnostic = 1,
+        [Description("Ожидает ремонта")]
+        WaitForReparing = 2,
     }
 }

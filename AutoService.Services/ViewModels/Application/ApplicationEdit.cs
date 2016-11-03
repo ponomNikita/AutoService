@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using AutoService.DAL.Models;
 
 namespace AutoService.Services.ViewModels
 {
@@ -12,6 +13,23 @@ namespace AutoService.Services.ViewModels
         [Display(Name="Время")]
         public string Time { get; set; }
         public new DateTime? Date { get; set; }
+
+        public ApplicationEdit() { }
+
+        public ApplicationEdit(Application application)
+        {
+            this.Date = application.Date.Date;
+            this.Time = application.Date.ToShortTimeString();
+            this.CarModel = application.CarModel;
+            this.CarNumber = application.CarNumber;
+            this.CreatedAt = application.CreatedAt;
+            this.CreatedBy = application.CreatedBy;
+            this.IsApproved = application.IsApproved;
+            this.Note = application.Note;
+            this.Status = application.Status;
+            this.RequestType = application.RequestType;
+            this.id = application.id;
+        }
 
         public void Copy(DAL.Models.Application destination)
         {
