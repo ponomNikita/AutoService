@@ -149,7 +149,7 @@ namespace AutoService.Services
 
         public string Edit(ApplicationEdit model)
         {
-            Application item = new Application();
+            Application item = GetById(model.id);
             model.Copy(item);
 
             if (!IsFreeTime(item.Date))

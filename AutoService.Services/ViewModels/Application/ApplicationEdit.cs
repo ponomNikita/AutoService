@@ -33,11 +33,11 @@ namespace AutoService.Services.ViewModels
 
         public void Copy(DAL.Models.Application destination)
         {
+            destination.id = id;
             destination.Status = Status;
             destination.CarModel = CarModel;
             destination.CarNumber = CarNumber;
-            destination.CreatedAt = CreatedAt;
-            destination.CreatedBy = CreatedBy;
+            destination.CreatedAt = DateTime.Now;
             destination.RequestType = RequestType;
             if(this.Date.HasValue)
                 destination.Date = new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day);

@@ -72,7 +72,7 @@
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(m => m.Date, new { @class = "control-label required" })
-                    @Html.TextBoxFor(m => m.Date, new {@class = "form-control", id = "datepicker"})
+                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new {@class = "form-control", id = "datepicker"})
                     @Html.ValidationMessageFor(m => m.Date)
                 </div>
                 <div class="form-group">
