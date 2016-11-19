@@ -32,5 +32,6 @@ namespace AutoService.DAL.Models
         [Display(Name = "Дополнительно")]
         public string Note { get; set; }
         public bool IsApproved { get; set; }
+        public ICollection<Application> CoordinationRequests { get; set; }
     }
 }

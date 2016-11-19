@@ -14,8 +14,10 @@ namespace AutoService.DAL
         private IRepository<Role> roleRepositrory;
         private IRepository<User_Role> user_RoleRepositrory;
         private IRepository<Module> moduleRepositrory;
-        private IRepository<Application> applicationRepository; 
-        
+        private IRepository<Application> applicationRepository;
+        private IRepository<CoordinationRequest> coordinationRequestRepository;
+        private IRepository<CoordinationResponse> coordinationResponseRepository;
+
         public IRepository<User> Users
         {
             get
@@ -63,6 +65,26 @@ namespace AutoService.DAL
                 if (applicationRepository == null)
                     applicationRepository = new Repository<Application>(db);
                 return applicationRepository;
+            }
+        }
+
+        public IRepository<CoordinationRequest> CoordinationRequests
+        {
+            get
+            {
+                if (coordinationRequestRepository == null)
+                    coordinationRequestRepository = new Repository<CoordinationRequest>(db);
+                return coordinationRequestRepository;
+            }
+        }
+
+        public IRepository<CoordinationResponse> CoordinationResponses
+        {
+            get
+            {
+                if (coordinationResponseRepository == null)
+                    coordinationResponseRepository = new Repository<CoordinationResponse>(db);
+                return coordinationResponseRepository;
             }
         }
 

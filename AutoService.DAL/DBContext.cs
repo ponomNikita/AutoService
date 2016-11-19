@@ -18,6 +18,8 @@ namespace AutoService.DAL
         public DbSet<User_Role> User_Roles { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Application> Applications { get; set; }
+        public DbSet<CoordinationRequest> CoordinationRequests { get; set; }
+        public DbSet<CoordinationResponse> CoordinationResponses { get; set; }
 
         public static DBContext GetDBContext()
         {
