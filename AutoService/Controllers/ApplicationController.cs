@@ -23,12 +23,14 @@ namespace AutoService.Controllers
         private IApplicationService appService;
         private IDateTimeProvider timeProvider;
         private IPermissionService permissionService;
+        private IAutoServiceUnitOfWork uow;
 
         public ApplicationController()
             :base()
         {
+            uow = new AutoServiceUnitOfWork();
             timeProvider = ServicesFactory.CreateDateTimeProvider();
-            appService = ServicesFactory.CreateApplicationService(new Repository<Application>(DBContext.GetDBContext()), timeProvider, currentUser);
+            appService = ServicesFactory.CreateApplicationService(timeProvider, currentUser);
             permissionService = ServicesFactory.CreatePermissionService();
         }
 
@@ -45,7 +47,8 @@ namespace AutoService.Controllers
             {
                 RequestType = requestType,
                 Status = (int)ApplicationStatus.WaitForApprove,
-                IsApproved = false
+                IsApproved = false,
+                isCreate = true
             };
             return View(newApplication);
         }
@@ -92,6 +95,7 @@ namespace AutoService.Controllers
         public ActionResult Edit(int id)
         {
             ApplicationEdit application = new ApplicationEdit(appService.GetById(id));
+            application.isCreate = false;
 
             return View("EditMain", application);
         }
@@ -102,14 +106,14 @@ namespace AutoService.Controllers
             if (!ModelState.IsValid)
                 return View("EditMain", model);
 
-            var modelError = appService.Edit(model);
+            var modelError = appService.Edit(ref model);
             if (!string.IsNullOrWhiteSpace(modelError))
             {
                 ModelState.AddModelError("", modelError);
-                return View("EditMain", model);
+                return View("Edit", model);
             }
 
-            return View("EditMain", model);
+            return View("Edit", model);
         }
 
         [HttpGet]
@@ -124,6 +128,37 @@ namespace AutoService.Controllers
         public IEnumerable<Application> GetFiltredContent(ApplicationFilter filter)
         {
             return appService.GetFiltered(filter);
+        }
+
+        [HttpPost]
+        [AuthorizeUser(Roles = "admin")]
+        public ActionResult CreateCoordinationRequest(CoordinationRequest model)
+        {
+            if(!ModelState.IsValid)
+                return RedirectToAction("Edit", "Application", new { id = model.ApplicationId});
+
+            appService.CreateCoordinationRequest(model);
+
+            return RedirectToAction("Edit", "Application", new { id = model.ApplicationId });
+        }
+
+        [HttpGet]
+        public ActionResult CreateResponse(int coordinationRequestId)
+        {
+            CoordinationResponseCreate model = new CoordinationResponseCreate();
+            model.CoordinationRequestId = coordinationRequestId;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateResponse(CoordinationResponseCreate model)
+        {
+            appService.CreateCoordinationResponse(model);
+            var request = uow.CoordinationRequests.Get(model.CoordinationRequestId);
+            if (request != null)
+                return RedirectToAction("Edit", new { id = request.ApplicationId });
+
+            return RedirectToAction("Index", new { CreatedBy = currentUser.Login });
         }
     }
 }

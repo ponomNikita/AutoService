@@ -66,5 +66,10 @@ namespace AutoService.DAL
         {
             db.SaveChanges();
         }
+
+        public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
+        {
+            return dbSet.Where(predicate);
+        }
     }
 }

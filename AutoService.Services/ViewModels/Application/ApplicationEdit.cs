@@ -14,6 +14,10 @@ namespace AutoService.Services.ViewModels
         public string Time { get; set; }
         public new DateTime? Date { get; set; }
 
+        public bool isCreate { get; set; }
+
+        public new int? Status { get; set; }
+
         public ApplicationEdit() { }
 
         public ApplicationEdit(Application application)
@@ -29,6 +33,10 @@ namespace AutoService.Services.ViewModels
             this.Status = application.Status;
             this.RequestType = application.RequestType;
             this.id = application.id;
+            foreach(var req in application.CoordinationRequests)
+            {
+                this.CoordinationRequests.Add(req);
+            }
         }
 
         public void Copy(DAL.Models.Application destination)

@@ -13,8 +13,5 @@ namespace AutoService.DAL.Models
 
         public bool? IsAgree { get; set; }
 
-        public CoordinationRequest CoordinationRequestId { get; set; }
-
-        public virtual CoordinationRequest CoordinationRequest { get; set; }
     }
 }

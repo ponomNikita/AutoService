@@ -8,6 +8,7 @@
 @{
     IPermissionService permissionService = ServicesFactory.CreatePermissionService();
     bool isAdmin = permissionService.HasRole((int) Roles.Admin, User.Identity.Name);
+    string editBtnName = isAdmin ? "Работа с заявкой" : "Редактировать";
 }
 <div class="custom-form-group">
     <div class="container" style="width:100%">
@@ -29,11 +30,8 @@
                     
                     
                     <td>
-                        @if (isAdmin || !app.IsApproved)
-                        {
-                            @Html.ActionLink("Редактировать", "Edit", "Application", new {id = app.id},
+                            @Html.ActionLink(editBtnName, "Edit", "Application", new {id = app.id},
                                 new {role = "button", @class = "btn btn-warning", style = "padding:2px; margin:1px"})
-                        }
                         @if (isAdmin)
                         {
                             @Html.ActionLink("Удалить", "Delete", "Application", new {id = app.id},

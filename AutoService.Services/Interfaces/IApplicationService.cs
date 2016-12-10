@@ -19,7 +19,9 @@ namespace AutoService.Services.Interfaces
         IEnumerable<Application> GetAll();
         IEnumerable<Application> GetFiltered(ApplicationFilter filter);
         string Create(ApplicationEdit model);
-        string Edit(ApplicationEdit model);
+        string Edit(ref ApplicationEdit model);
+        string CreateCoordinationRequest(CoordinationRequest model);
+        string CreateCoordinationResponse(CoordinationResponseCreate model);
 
     }
 }

@@ -11,7 +11,7 @@ namespace AutoService.DAL
     public class DBContext : DbContext
     {
         private static DBContext instance;
-        private DBContext() : base("AutoService")
+        public DBContext() : base("AutoService")
         { }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -32,6 +32,14 @@ namespace AutoService.DAL
             {
                 return instance;
             }
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CoordinationRequest>()
+                        .HasRequired<Application>(s => s.Application)
+                        .WithMany(s => s.CoordinationRequests);
+
         }
     }
 }

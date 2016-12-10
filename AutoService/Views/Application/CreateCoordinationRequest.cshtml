@@ -1,0 +1,56 @@
+﻿@using AutoService.Enums
+@using AutoService.Services.Enums
+@model      AutoService.Services.ViewModels.ApplicationEdit
+@{
+    IDictionary<int, string> listDictionary = new Dictionary<int, string>()
+    {
+        {1, ECoordinationRequestType.CoordinateTime.Description() },
+        {2, ECoordinationRequestType.CoordinatePrice.Description() },
+        {3, ECoordinationRequestType.OtherCoordination.Description() }
+    };
+
+    var selectedList = new SelectList(listDictionary, "Key", "Value", 1);
+}
+<script>
+    $(document).ready(function () {
+        $("#ApplicationId").prop("value", '@Model.id');
+        $("#DistanationUser").prop("value", '@Model.CreatedBy');
+        $("#SourceUser").prop("value", '@User.Identity.Name');
+    });
+
+    function CreateCoordinationRequest() {
+        var form = $("#CreateCoordinationRequestForm");
+        from.submit();
+    }
+</script>
+
+<div class="row">
+    <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
+        <h3>Новое согласование</h3><br />
+    </div>
+</div>
+
+    @using (Html.BeginForm("CreateCoordinationRequest", "Application", FormMethod.Post, new { name = "CreateCoordinationRequestForm" }))
+    {
+        @Html.Hidden("ApplicationId")
+        @Html.Hidden("DistanationUser")
+        @Html.Hidden("SourceUser")
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Type", "Тип", new { @class = "control-label" })
+                @Html.DropDownList("Type", selectedList, new { @class = "form-control" })
+                @Html.ValidationMessage("Type")
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Message", "Вопрос", new { @class = "control-label" })
+                @Html.TextArea("Message", new { @class = "form-control" })
+                @Html.ValidationMessage("Message")
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary col-lg-2 col-lg-offset-4 col-md-1 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-2" onclick="return CreateCoordinationRequest();">Согласовать</button>
+        </div>
+    }
+

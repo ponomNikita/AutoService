@@ -18,7 +18,7 @@ namespace AutoService.Services
             return new AccountService(user);
         }
 
-        public static IApplicationService CreateApplicationService(IRepository<Application> _repository, IDateTimeProvider _timeProvider, User _currentUser)
+        public static IApplicationService CreateApplicationService(IDateTimeProvider _timeProvider, User _currentUser)
         {
             return new ApplicationService(new Repository<Application>(DBContext.GetDBContext()), _timeProvider, _currentUser);
         }

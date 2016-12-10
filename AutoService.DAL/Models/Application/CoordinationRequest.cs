@@ -23,12 +23,12 @@ namespace AutoService.DAL.Models
 
         public int ApplicationId { get; set; }
 
-        public int CoordinationRequestId { get; set; }
+        public int? CoordinationResponseId { get; set; }
 
+        [ForeignKey("ApplicationId")]
         public virtual Application Application { get; set; }
 
-        public CoordinationResponse CoordinationResponse { get; set; }
-
+        public virtual CoordinationResponse CoordinationResponse { get; set; }
 
     }
 }

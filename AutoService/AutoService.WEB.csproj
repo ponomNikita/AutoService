@@ -257,6 +257,10 @@
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Application\ApplicationList.cshtml" />
     <Content Include="Views\Application\EditMain.cshtml" />
+    <Content Include="Views\Application\CoordinationTickets.cshtml" />
+    <Content Include="Views\Application\CoordinationRequests.cshtml" />
+    <Content Include="Views\Application\CreateCoordinationRequest.cshtml" />
+    <Content Include="Views\Application\CreateResponse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,8 @@
 ﻿@using System.Web.Configuration
+@using AutoService.DAL.Models
 @using AutoService.Services
+@using AutoService.Enums
+@using AutoService.Services.Enums
 @using AutoService.Services.Interfaces
 @using Roles = AutoService.Services.Enums.Roles
 @model AutoService.Services.ViewModels.ApplicationEdit
@@ -13,18 +16,26 @@
 
     bool IsEdit = Model.id != 0;
     bool isAdmin = permissionService.HasRole((int) Roles.Admin, User.Identity.Name);
+    bool isApproved = Model.IsApproved;
 
     string formMethod = IsEdit ? "Edit" : "Create";
     var client = accountService.GetUserByLogin(Model.CreatedBy);
+
+    List<SelectListItem> statusSelectListItems = new List<SelectListItem>()
+    {
+        new SelectListItem { Text = (ApplicationStatus.WaitForApprove).Description(), Value = ((int)ApplicationStatus.WaitForApprove).ToString() },
+        new SelectListItem { Text = (ApplicationStatus.WaitForDiagnostic).Description(), Value = ((int)ApplicationStatus.WaitForDiagnostic).ToString() },
+        new SelectListItem { Text = (ApplicationStatus.WaitForReparing).Description(), Value = ((int)ApplicationStatus.WaitForReparing).ToString() },
+    };
+
+    SelectList statusSelectList = new SelectList(statusSelectListItems, "Value", "Text");
+
+    ViewData.Add(new KeyValuePair<string, object>("IsAdmin", isAdmin));
 }
 <script>
     $(document)
         .ready(function () {
-            configureTimePicker(@timepickerStep, '@timepickerStartTime', '@timepickerEndTime');
-            $('#datepicker').removeAttr("data-val-date");
-            $('.Date').attr("value", "");
-
-            if ('@isAdmin' === 'True') {
+            if ('@isAdmin' === 'True' || '@isApproved' === 'True') {
                 $("#CarModel").prop('readonly', true);
                 $("#CarNumber").prop('readonly', true);
                 $("#timepicker").prop('readonly', true);
@@ -35,7 +46,18 @@
                 $("#ClientPhoneNumber").prop('readonly', true);
                 $("#ClientEmail").prop('readonly', true);
                 $("#ClientAddress").prop('readonly', true);
-            } 
+                $('#datepicker').datepicker("destroy");
+
+                //Отключаем валидацию на форме
+                $('#createApplicationForm').validate({
+                    ignore: "#createApplicationForm"
+                });
+            }
+            else {
+                configureTimePicker(@timepickerStep, '@timepickerStartTime', '@timepickerEndTime');
+                $('#datepicker').removeAttr("data-val-date");
+                $('.Date').attr("value", "");
+            }
         });
 </script>
 <div class="custom-form-group">
@@ -45,7 +67,7 @@
         </div>
     </div>
     <div class="row">
-        <div class ="col-md-offset-2 col-lg-offset-2 col-sm-offset-2 col-xs-offset-1">
+        <div class="col-md-offset-2 col-lg-offset-2 col-sm-offset-2 col-xs-offset-1">
             @Html.ValidationSummary(true)
         </div>
     </div>
@@ -54,6 +76,7 @@
         @Html.HiddenFor(m => m.RequestType)
         @Html.HiddenFor(m => m.Status)
         @Html.HiddenFor(m => m.IsApproved)
+        @Html.HiddenFor(m => m.isCreate)
         <div class="container">
             <div class="row">
                 <div class="form-group">
@@ -72,7 +95,7 @@
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(m => m.Date, new { @class = "control-label required" })
-                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new {@class = "form-control", id = "datepicker"})
+                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "datepicker" })
                     @Html.ValidationMessageFor(m => m.Date)
                 </div>
                 <div class="form-group">
@@ -88,7 +111,18 @@
                     @Html.ValidationMessageFor(m => m.Note)
                 </div>
             </div>
-            
+
+            @if (isAdmin)
+            {
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+                        @Html.DropDownList("Status", statusSelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Status)
+                    </div>
+                </div>
+            }
+
             @if (isAdmin && client != null)
             {
                 <div class="col-md-offset-4 col-lg-offset-4 col-sm-offset-3 col-xs-offset-2">
@@ -112,7 +146,9 @@
                 </div>
             }
 
-            @if (!isAdmin)
+
+
+            @if (isAdmin || !isApproved)
             {
                 <div class="row">
                     <button type="submit" class="btn btn-primary col-lg-1 col-lg-offset-4 col-md-1 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-2">Сохранить</button>
@@ -122,3 +158,21 @@
         </div>
     }
 </div>
+<div class="custom-form-group">
+    @if (IsEdit)
+    {
+        @Html.Partial("CoordinationTickets", Model, ViewData)
+
+        if (!isAdmin)
+        {
+            @Html.Partial("CoordinationRequests")
+        }
+        else
+        {
+            @Html.Partial("CreateCoordinationRequest", Model)
+        }
+
+
+    }
+</div>
+

@@ -11,6 +11,10 @@ namespace AutoService.DAL.Models
     [Table("Application", Schema = "app")]
     public class Application : TEntity
     {
+        public Application()
+        {
+            CoordinationRequests = new List<CoordinationRequest>();
+        }
         [Required]
         public new int id { get; set; }
         [Required]
@@ -32,6 +36,6 @@ namespace AutoService.DAL.Models
         [Display(Name = "Дополнительно")]
         public string Note { get; set; }
         public bool IsApproved { get; set; }
-        public ICollection<Application> CoordinationRequests { get; set; }
+        public virtual ICollection<CoordinationRequest> CoordinationRequests { get; set; }
     }
 }

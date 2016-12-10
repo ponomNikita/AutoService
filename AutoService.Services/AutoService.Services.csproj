@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Enums\ApplicationsActionType.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="Enums\ECoordinationRequestType.cs" />
     <Compile Include="Enums\RequestTypes.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ViewModels\Account\UserViewModel.cs" />
     <Compile Include="ViewModels\Application\ApplicationContent.cs" />
     <Compile Include="ViewModels\Application\ApplicationEdit.cs" />
+    <Compile Include="ViewModels\Application\CoordinationResponseCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,0 +1,42 @@
+﻿@model AutoService.Services.ViewModels.ApplicationEdit
+    @{ 
+        bool isAdmin = (bool)ViewData["IsAdmin"];
+    }
+    <div class="container" style="width:100%">
+    @if (Model.CoordinationRequests != null)
+    {
+        <h3>Согласование вопросов</h3>
+        <table class="table">
+            <tr>
+                <th>Номер</th>
+                <th>Тип</th>
+                <th>Вопрос</th>
+                <th>Ответ</th>
+            </tr>
+            @{
+                int number = 1;
+            }
+            @foreach (var request in Model.CoordinationRequests)
+            {
+                <tr>
+                    <td>@number</td>
+                    <td>@request.Type</td>
+                    <td>@request.Message</td>
+                    <td>
+                        @if (request.CoordinationResponse != null)
+                        {
+                            @request.CoordinationResponse.Message
+                        }
+
+                        else if (!isAdmin)
+                        {
+                            @Html.ActionLink("Ответить", "CreateResponse", "Application", new { coordinationRequestId = request.id },
+                           new { @class = "btn btn-warning" })
+                        }
+                    </td>
+                </tr>
+                number++;
+            }
+        </table>
+                }
+</div>

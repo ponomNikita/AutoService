@@ -73,7 +73,8 @@ namespace AutoService.Services
 
         public Application GetById(int id)
         {
-            return repository.Get(id);
+            Application application = repository.Get(id);
+            return application;
         }
 
         public IEnumerable<Application> GetAll()
@@ -147,19 +148,60 @@ namespace AutoService.Services
             return string.Empty;
         }
 
-        public string Edit(ApplicationEdit model)
+        public string Edit(ref ApplicationEdit model)
         {
             Application item = GetById(model.id);
+            DateTime dateTime = item.Date;
             model.Copy(item);
 
-            if (!IsFreeTime(item.Date))
+            if (dateTime != model.Date)
             {
-                return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
+                if (!IsFreeTime(item.Date))
+                {
+                    model = new ApplicationEdit(item);
+                    return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
+                }
             }
 
             Logger.Info("Запись в бд новой заявки...");
             repository.Update(item);
             repository.Save();
+            Logger.Info("Успешно!");
+
+            model = new ApplicationEdit(item);
+            return string.Empty;
+        }
+
+        public string CreateCoordinationRequest(CoordinationRequest model)
+        {
+            IRepository<CoordinationRequest> requestRepository = new Repository<CoordinationRequest>(DBContext.GetDBContext());
+            Logger.Info("Запись в бд новой заявки...");
+            requestRepository.Create(model);
+            requestRepository.Save();
+            Logger.Info("Успешно!");
+
+            return string.Empty;
+        }
+
+        public string CreateCoordinationResponse(CoordinationResponseCreate model)
+        {
+            IRepository<CoordinationRequest> requestRepository = new Repository<CoordinationRequest>(DBContext.GetDBContext());
+            IRepository<CoordinationResponse> responceRepository = new Repository<CoordinationResponse>(DBContext.GetDBContext());
+            CoordinationResponse response = new CoordinationResponse();
+
+            response.IsAgree = model.IsAgree;
+            response.Message = model.Message;
+
+            Logger.Info("Запись в бд новой заявки...");
+            responceRepository.Create(response);
+            responceRepository.Save();
+
+            var newResponse = responceRepository.GetAll().OrderByDescending(t => t.id).FirstOrDefault();
+            var request = requestRepository.Get(model.CoordinationRequestId);
+            request.CoordinationResponseId = newResponse.id;
+
+            requestRepository.Update(request);
+            requestRepository.Save();
             Logger.Info("Успешно!");
 
             return string.Empty;
