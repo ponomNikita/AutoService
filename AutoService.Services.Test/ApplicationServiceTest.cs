@@ -8,6 +8,7 @@ using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Services.Interfaces;
 using AutoService.Services;
+using AutoService.Services.ViewModels;
 using NSubstitute;
 using NSubstitute.Core;
 
@@ -71,6 +72,95 @@ namespace AutoService.Services.Test
             DateTime.TryParse(date, out Date);
 
             return appService.IsFreeTime(Date);
+        }
+
+        [Test]
+        [TestCase("uaz patriot", TestName = "When car model is uaz patriot", ExpectedResult = 1)]
+        [TestCase("mercedes cls", TestName = "When car model is mercedes cls", ExpectedResult = 2)]
+        [TestCase("opel", TestName = "When car model is opel", ExpectedResult = -1)]
+        public int GetFilteredByCarModelTest(string carModel)
+        {
+            ApplicationFilter filter = new ApplicationFilter()
+            {
+                CarModel = carModel
+            };
+
+            var applications = appService.GetFiltered(filter);
+            var apps = applications as Application[] ?? applications.ToArray();
+            if (!apps.Any())
+                return -1;
+
+            return apps.FirstOrDefault().id;
+        }
+
+        [Test]
+        [TestCase("2016.10.17 16:30:00", TestName = "Fail creation", ExpectedResult = "К сожалению это время занято. Пожалуйста, выберете другую дату или время")]
+        [TestCase("2016.12.09 16:00:00", TestName = "Success creation", ExpectedResult = "")]
+        [TestCase("", TestName = "Date is null", ExpectedResult = "Поле 'Дата' должно быть заполнено")]
+        public string CreateApplicationTest(string date)
+        {
+            DateTime Date;
+            DateTime.TryParse(date, out Date);
+
+            ApplicationEdit newApp = new ApplicationEdit(new Application()
+            {
+                id = 1,
+                CarModel = "opel",
+                CarNumber = "gh345q",
+                CreatedAt = DateTime.Now,
+                CreatedBy = "sys",
+                Date = Date,
+                IsApproved = false,
+                RequestType = 0,
+                Status = 0
+
+            });
+
+            return  appService.Create(newApp);
+        }
+
+        [Test]
+        [TestCase("", TestName = "Car Model is empty", ExpectedResult = "Поле 'Модель автомобиля' должно быть заполнено")]
+        [TestCase("opel", TestName = "Car Model is opel", ExpectedResult = "")]
+        public string CreateApplicationWhenCarModelIsEmpty(string carModel)
+        {
+            ApplicationEdit newApp = new ApplicationEdit(new Application()
+            {
+                id = 1,
+                CarModel = carModel,
+                CarNumber = "gh345q",
+                CreatedAt = DateTime.Now,
+                CreatedBy = "sys",
+                Date = new DateTime(2016, 12, 17, 16, 30, 0),
+                IsApproved = false,
+                RequestType = 0,
+                Status = 0
+
+            });
+
+            return  appService.Create(newApp);
+        }
+
+        [Test]
+        [TestCase("", TestName = "Car number is empty", ExpectedResult = "Поле 'Номер автомобиля' должно быть заполнено")]
+        [TestCase("q123qw", TestName = "Car number is q123qw", ExpectedResult = "")]
+        public string CreateApplicationWhenCarNumberIsEmpty(string carNumber)
+        {
+            ApplicationEdit newApp = new ApplicationEdit(new Application()
+            {
+                id = 1,
+                CarModel = "opel",
+                CarNumber = carNumber,
+                CreatedAt = DateTime.Now,
+                CreatedBy = "sys",
+                Date = new DateTime(2016, 12, 17, 16, 30, 0),
+                IsApproved = false,
+                RequestType = 0,
+                Status = 0
+
+            });
+
+            return appService.Create(newApp);
         }
     }
 }

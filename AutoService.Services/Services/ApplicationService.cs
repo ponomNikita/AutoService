@@ -135,6 +135,15 @@ namespace AutoService.Services
             newItem.CreatedAt = timeProvider.Now;
             newItem.CreatedBy = currentUser != null ? currentUser.Login : string.Empty;
 
+            try
+            {
+                Validate(newItem);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
             if (!IsFreeTime(newItem.Date))
             {
                 return "К сожалению это время занято. Пожалуйста, выберете другую дату или время";
@@ -170,6 +179,24 @@ namespace AutoService.Services
 
             model = new ApplicationEdit(item);
             return string.Empty;
+        }
+
+        public void Validate(Application item)
+        {
+            if (string.IsNullOrEmpty(item.CarNumber))
+            {
+                throw new Exception("Поле 'Номер автомобиля' должно быть заполнено");
+            }
+
+            if (string.IsNullOrEmpty(item.CarModel))
+            {
+                throw new Exception("Поле 'Модель автомобиля' должно быть заполнено");
+            }
+
+            if (item.Date == DateTime.MinValue)
+            {
+                throw new Exception("Поле 'Дата' должно быть заполнено");
+            }
         }
 
         public string CreateCoordinationRequest(CoordinationRequest model)

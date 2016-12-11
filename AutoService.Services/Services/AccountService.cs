@@ -29,6 +29,12 @@ namespace AutoService.Services.Services
             Logger = new Logger();
         }
 
+        public AccountService(IAutoServiceUnitOfWork _uow)
+        {
+            uow = _uow;
+            Logger = new Logger();
+        }
+
         public User GetCurrentUser()
         {
             if (User == null)
