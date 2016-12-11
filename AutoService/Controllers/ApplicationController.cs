@@ -6,7 +6,6 @@ using System.Web.ApplicationServices;
 using System.Web.Mvc;
 using AutoService.DAL;
 using AutoService.DAL;
-using AutoService.DAL.FilterModel;
 using AutoService.DAL.Models;
 using AutoService.Services.ViewModels;
 using AutoService.Security;
@@ -69,7 +68,6 @@ namespace AutoService.Controllers
             return RedirectToAction("Index", "Application", new { CreatedBy = currentUser.Login});
         }
 
-        [HttpGet]
         [AuthorizeUser]
         public ActionResult Index(ApplicationFilter filter)
         {

@@ -1,31 +1,47 @@
 ﻿@model AutoService.Services.ViewModels.ApplicationContent
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Заявки";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<script>
+    function resetForm($form) {
+        $form.find('input, select, textarea').prop('value', '');
+        $form.find('input:radio, input:checkbox')
+             .removeAttr('checked').removeAttr('selected');
+    }
+</script>*@
 
-@using (Html.BeginForm("Index", "Application"))
+@using (Html.BeginForm("Index", "Application", FormMethod.Post, new {name = "filterForm" }))
 {
     <div class="custom-form-group">
+        <div class="row">
+            <div class="col-md-offset-4 col-lg-offset-5 col-sm-offset-3 col-xs-offset-2">
+                <h2>@ViewBag.Title</h2><br />
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Filter.CarModel, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Filter.CarModel, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Filter.CarModel)
+                    @Html.LabelFor(m => m.Filter.CarModel, new {@class = "control-label"})
+                    @Html.TextBoxFor(m => m.Filter.CarModel, new {@class = "form-control"})
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Filter.RequestType, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Filter.RequestType, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Filter.RequestType)
+                    @Html.LabelFor(m => m.Filter.CarNumber, new {@class = "control-label"})
+                    @Html.TextBoxFor(m => m.Filter.CarNumber, new {@class = "form-control"})
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Filter.Status, new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.Filter.Status, new SelectList(Model.Filter.Statuses, "Value", "Key"), new { @class = "form-control" })
                 </div>
             </div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-primary col-lg-2 col-lg-offset-4 col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2">Фильтровать</button>
-            <a href="~/" class="btn btn-default col-md-1 col-lg-1 col-xs-3 col-sm-2" role="button">Отмена</a>
+            @*<button type="reset" id="filter-clear" onclick="resetForm($('#filterForm'))" class="btn btn-default col-md-1 col-lg-1 col-xs-3 col-sm-2" role="button">Очистить</button>*@
         </div>
     </div>
 

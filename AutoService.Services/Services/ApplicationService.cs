@@ -82,7 +82,7 @@ namespace AutoService.Services
             return repository.GetAll().AsEnumerable();
         }
 
-        public IEnumerable<Application> GetFiltered(AutoService.DAL.FilterModel.ApplicationFilter filter)
+        public IEnumerable<Application> GetFiltered(AutoService.Services.ViewModels.ApplicationFilter filter)
         {
             var applications = repository.GetAll();
 

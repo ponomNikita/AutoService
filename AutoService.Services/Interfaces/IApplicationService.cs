@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoService.DAL.Models;
 using AutoService.Services.Enums;
-using AutoService.DAL.FilterModel;
 using AutoService.Services.ViewModels;
 
 namespace AutoService.Services.Interfaces

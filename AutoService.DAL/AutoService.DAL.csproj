@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
-    <Compile Include="FilterModel\ApplicationFilter.cs" />
     <Compile Include="Models\Application\CoordinationRequest.cs" />
     <Compile Include="Models\Application\CoordinationResponse.cs" />
     <Compile Include="Models\User.cs" />
