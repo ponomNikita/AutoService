@@ -18,13 +18,13 @@ namespace AutoService.Services
         public bool IsModuleActive(string moduleName)
         {
             var module = uow.Modules.GetAll().FirstOrDefault(t => t.Name == moduleName);
-            return module != null ? module.IsActive : false;
+            return module != null && module.IsActive;
         }
 
         public bool IsModuleActive(int Code)
         {
             var module = uow.Modules.GetAll().FirstOrDefault(t => t.Code == Code);
-            return module != null ? module.IsActive : false;
+            return module != null && module.IsActive;
         }
 
         public void SetModuleActive(string moduleName)

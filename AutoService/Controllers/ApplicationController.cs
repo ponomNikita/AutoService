@@ -110,10 +110,10 @@ namespace AutoService.Controllers
             if (!string.IsNullOrWhiteSpace(modelError))
             {
                 ModelState.AddModelError("", modelError);
-                return View("Edit", model);
+                return View("EditMain", model);
             }
 
-            return View("Edit", model);
+            return View("EditMain", model);
         }
 
         [HttpGet]

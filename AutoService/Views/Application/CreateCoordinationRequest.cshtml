@@ -35,18 +35,20 @@
         @Html.Hidden("ApplicationId")
         @Html.Hidden("DistanationUser")
         @Html.Hidden("SourceUser")
-        <div class="row">
-            <div class="form-group">
-                @Html.Label("Type", "Тип", new { @class = "control-label" })
-                @Html.DropDownList("Type", selectedList, new { @class = "form-control" })
-                @Html.ValidationMessage("Type")
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    @Html.Label("Type", "Тип", new { @class = "control-label" })
+                    @Html.DropDownList("Type", selectedList, new { @class = "form-control" })
+                    @Html.ValidationMessage("Type")
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                @Html.Label("Message", "Вопрос", new { @class = "control-label" })
-                @Html.TextArea("Message", new { @class = "form-control" })
-                @Html.ValidationMessage("Message")
+            <div class="row">
+                <div class="form-group">
+                    @Html.Label("Message", "Вопрос", new { @class = "control-label" })
+                    @Html.TextArea("Message", new { @class = "form-control" })
+                    @Html.ValidationMessage("Message")
+                </div>
             </div>
         </div>
         <div class="row">

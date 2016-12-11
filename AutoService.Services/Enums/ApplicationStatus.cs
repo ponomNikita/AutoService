@@ -15,5 +15,11 @@ namespace AutoService.Services.Enums
         WaitForDiagnostic = 1,
         [Description("Ожидает ремонта")]
         WaitForReparing = 2,
+        [Description("Ожидает поставки запчастей")]
+        WaitForSupply = 3,
+        [Description("На ремонте")]
+        Reparing = 4,
+        [Description("Готово")]
+        Done = 5,
     }
 }

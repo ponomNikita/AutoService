@@ -1,8 +1,9 @@
-[Dd]ebug
+[Dd]ebug/
 [Oo]bj
 [Bb]in
 [Ll]ib
 *.dll
 *.pdb
 *.cache
+*.txt
 /AutoService/[Bb]in

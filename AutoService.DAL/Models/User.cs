@@ -8,6 +8,9 @@ namespace AutoService.DAL.Models
 {
     public partial class User
     {
-        public string GetFullName() => $"{FirstName} {LastName}";
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}", FirstName, LastName);
+        }
     }
 }

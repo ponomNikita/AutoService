@@ -12,11 +12,12 @@ namespace AutoService.Services.ViewModels
         [Required]
         [Display(Name="Время")]
         public string Time { get; set; }
+
+        [Required]
+        [Display(Name = "Дата")]
         public new DateTime? Date { get; set; }
 
         public bool isCreate { get; set; }
-
-        public new int? Status { get; set; }
 
         public ApplicationEdit() { }
 

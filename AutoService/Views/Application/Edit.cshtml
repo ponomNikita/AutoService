@@ -21,14 +21,17 @@
     string formMethod = IsEdit ? "Edit" : "Create";
     var client = accountService.GetUserByLogin(Model.CreatedBy);
 
-    List<SelectListItem> statusSelectListItems = new List<SelectListItem>()
+    List<SelectListItem> SelectListItems = new List<SelectListItem>()
     {
         new SelectListItem { Text = (ApplicationStatus.WaitForApprove).Description(), Value = ((int)ApplicationStatus.WaitForApprove).ToString() },
         new SelectListItem { Text = (ApplicationStatus.WaitForDiagnostic).Description(), Value = ((int)ApplicationStatus.WaitForDiagnostic).ToString() },
         new SelectListItem { Text = (ApplicationStatus.WaitForReparing).Description(), Value = ((int)ApplicationStatus.WaitForReparing).ToString() },
+        new SelectListItem { Text = (ApplicationStatus.WaitForSupply).Description(), Value = ((int)ApplicationStatus.WaitForSupply).ToString() },
+        new SelectListItem { Text = (ApplicationStatus.Reparing).Description(), Value = ((int)ApplicationStatus.Reparing).ToString() },
+        new SelectListItem { Text = (ApplicationStatus.Done).Description(), Value = ((int)ApplicationStatus.Done).ToString() },
     };
 
-    SelectList statusSelectList = new SelectList(statusSelectListItems, "Value", "Text");
+    IEnumerable<SelectListItem> SelectList = new SelectList(SelectListItems, "Value", "Text", Model.Status);
 
     ViewData.Add(new KeyValuePair<string, object>("IsAdmin", isAdmin));
 }
@@ -58,6 +61,11 @@
                 $('#datepicker').removeAttr("data-val-date");
                 $('.Date').attr("value", "");
             }
+
+            $('select').on('change', function (e) {
+                var valueSelected = this.value;
+                $("#Status").prop("value", valueSelected);
+            });
         });
 </script>
 <div class="custom-form-group">
@@ -114,11 +122,11 @@
 
             @if (isAdmin)
             {
+                @Html.HiddenFor(m => m.Status)
                 <div class="row">
                     <div class="form-group">
                         @Html.LabelFor(m => m.Status, new { @class = "control-label" })
-                        @Html.DropDownList("Status", statusSelectList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Status)
+                        @Html.DropDownList("SelectStatus", SelectList as SelectList, new { @class = "form-control" })
                     </div>
                 </div>
             }
@@ -158,21 +166,19 @@
         </div>
     }
 </div>
-<div class="custom-form-group">
-    @if (IsEdit)
+    @if (IsEdit && (Model.CoordinationRequests != null && Model.CoordinationRequests.Any() || isAdmin))
     {
-        @Html.Partial("CoordinationTickets", Model, ViewData)
+        <div class="custom-form-group">
+            @if (Model.CoordinationRequests != null && Model.CoordinationRequests.Any())
+            {
+            @Html.Partial("CoordinationTickets", Model, ViewData)
+            }
 
-        if (!isAdmin)
-        {
-            @Html.Partial("CoordinationRequests")
-        }
-        else
-        {
+            @if (isAdmin)
+            {
             @Html.Partial("CreateCoordinationRequest", Model)
-        }
-
+            }
+        </div>
 
     }
-</div>
 
