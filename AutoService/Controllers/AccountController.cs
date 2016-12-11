@@ -18,7 +18,18 @@ namespace AutoService.Controllers
         [HttpGet]
         public ActionResult CreateUser()
         {
-            UserViewModel model = new UserViewModel();
+            UserViewModel model = new UserViewModel()
+            {
+                IsCreate = true
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string login)
+        {
+            User user = accountService.GetUser(login);
+            UserViewModel model = new UserViewModel(user) {IsCreate = false};
             return View(model);
         }
 
@@ -42,6 +53,25 @@ namespace AutoService.Controllers
             {
                 return !string.IsNullOrWhiteSpace(returnUrl) ? Redirect(returnUrl) : Redirect("~/");
             }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel model, string returnUrl = "")
+        {
+            if (ModelState.IsValid)
+            {
+                string modelError;
+                accountService.EditProfile(model, out modelError);
+
+                if (!string.IsNullOrWhiteSpace(modelError))
+                {
+                    ModelState.AddModelError("", modelError);
+                    return View(model);
+                }
+                return View(model);
+            }
+
+            return View(model);
         }
 
         [HttpGet]

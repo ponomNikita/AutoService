@@ -37,6 +37,11 @@ namespace AutoService.Services.Services
             return uow.Users.GetAll().FirstOrDefault(t => t.Login == User.Identity.Name);
         }
 
+        public User GetUser(string login)
+        {
+            return uow.Users.Where(u => u.Login.Equals(login)).FirstOrDefault();
+        }
+
         public User GetUserByLogin(string login)
         {
             return uow.Users.GetAll().FirstOrDefault(u => u.Login.Equals(login));
@@ -76,6 +81,28 @@ namespace AutoService.Services.Services
             return newUser;
         }
 
+        public User EditProfile(UserViewModel model, out string modelErrorMsg)
+        {
+            modelErrorMsg = string.Empty;
+            User updateUser = uow.Users.Get(model.id);
+            model.Copy(updateUser);
+
+            try
+            {
+                Logger.Info(string.Format("Попытка сохранения изменений в профиле пользователя {0}...", updateUser.Login));
+                uow.Users.Update(updateUser);
+                uow.Save();
+                Logger.Info("Успешно!");
+            }
+            catch (Exception ex)
+            {
+                modelErrorMsg = ex.ToString();
+                Logger.Error(ex.ToString());
+            }
+
+            return updateUser;
+        }
+
         public void Login(LoginViewModel model, out string modelError)
         {
             var password = GetHashString(model.Password);
@@ -100,7 +127,7 @@ namespace AutoService.Services.Services
             FormsAuthentication.SignOut();
         }
 
-        private string GetHashString(string s)
+        public static string GetHashString(string s)
         {
             //переводим строку в байт-массим  
             byte[] bytes = Encoding.Unicode.GetBytes(s);

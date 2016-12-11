@@ -33,7 +33,7 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu dropdown-custom">
-                <li><a href="#">Редактирование профиля</a></li>
+                <li><a href="@Url.Action("Edit", "Account", new { login = User.Identity.Name })">Редактирование профиля</a></li>
                 @if (!isAdmin)
                 {
                     <li><a href="/Application/Index?CreatedBy=@User.Identity.Name">Мои заявки</a></li>
