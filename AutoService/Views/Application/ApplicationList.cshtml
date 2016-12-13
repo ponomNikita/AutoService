@@ -18,16 +18,32 @@
                 <th>Статус</th>
                 <th>Модель авто</th>
                 <th>Дата записи</th>
-                <td></td>
+                @if (!isAdmin)
+                {
+                    <th></th>
+                }
+                <th></th>
             </tr>
             @foreach (var app in Model.Items)
             {
+
+                var requests = app.CoordinationRequests.ToList();
+                var hasCoordination = !isAdmin && requests.Any(r => !r.CoordinationResponseId.HasValue);
+                
                 <tr>
                     <td>@(((RequestTypes)app.RequestType).Description())</td>
                     <td>@(app.Status.HasValue ? ((ApplicationStatus)app.Status.Value).Description() : string.Empty)</td>
                     <td>@(app.CarModel)</td>
                     <td>@(app.Date)</td>
-                    
+                    @if (!isAdmin)
+                    {
+                        <td>
+                            @if (hasCoordination)
+                            {
+                                <span class="glyphicon glyphicon-star"></span>
+                            }
+                        </td>
+                    }
                     
                     <td>
                             @Html.ActionLink(editBtnName, "Edit", "Application", new {id = app.id},

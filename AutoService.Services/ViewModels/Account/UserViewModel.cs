@@ -35,7 +35,7 @@ namespace AutoService.Services.ViewModels
         [Display(Name = "Номер телефона")]
         [Phone]
         public string PhoneNumber { get; set; }
-        [Display(Name = "Адерес")]
+        [Display(Name = "Адрес")]
         public string Address { get; set; }
 
         public bool IsCreate { get; set; }
