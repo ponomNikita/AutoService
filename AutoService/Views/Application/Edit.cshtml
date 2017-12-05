@@ -39,8 +39,8 @@
     $(document)
         .ready(function () {
             if ('@isAdmin' === 'True' || '@isApproved' === 'True') {
-                $("#CarModel").prop('readonly', true);
-                $("#CarNumber").prop('readonly', true);
+                $("#Car_Model").prop('readonly', true);
+                $("#Car_Number").prop('readonly', true);
                 $("#timepicker").prop('readonly', true);
                 $("#datepicker").prop('readonly', true);
                 $("#Note").prop('readonly', true);
@@ -58,7 +58,7 @@
             }
             else {
                 configureTimePicker(@timepickerStep, '@timepickerStartTime', '@timepickerEndTime');
-                $('#datepicker').removeAttr("data-val-date");
+                $('.datepicker').removeAttr("data-val-date");
                 $('.Date').attr("value", "");
             }
 
@@ -88,22 +88,29 @@
         <div class="container">
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CarModel, new { @class = "control-label required" })
-                    @Html.TextBoxFor(m => m.CarModel, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.CarModel)
+                    @Html.LabelFor(m => m.Car.Model, new { @class = "control-label required" })
+                    @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Car.Model)
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CarNumber, new { @class = "control-label required" })
-                    @Html.TextBoxFor(m => m.CarNumber, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.CarNumber)
+                    @Html.LabelFor(m => m.Car.RegNumber, new { @class = "control-label required" })
+                    @Html.TextBoxFor(m => m.Car.RegNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Car.RegNumber)
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Car.Year, new { @class = "control-label required" })
+                    @Html.TextBoxFor(m => m.Car.Year, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.Car.Year)
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
                     @Html.LabelFor(m => m.Date, new { @class = "control-label required" })
-                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "datepicker" })
+                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
                     @Html.ValidationMessageFor(m => m.Date)
                 </div>
                 <div class="form-group">

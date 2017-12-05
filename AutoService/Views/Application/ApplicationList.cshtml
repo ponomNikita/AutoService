@@ -33,7 +33,7 @@
                 <tr>
                     <td>@(((RequestTypes)app.RequestType).Description())</td>
                     <td>@(app.Status.HasValue ? ((ApplicationStatus)app.Status.Value).Description() : string.Empty)</td>
-                    <td>@(app.CarModel)</td>
+                    <td>@(app.Car.Model)</td>
                     <td>@(app.Date)</td>
                     @if (!isAdmin)
                     {

@@ -8,7 +8,6 @@ using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Services;
 using AutoService.Services.Interfaces;
-using AutoService.Services.Services;
 
 namespace AutoService.Security
 {

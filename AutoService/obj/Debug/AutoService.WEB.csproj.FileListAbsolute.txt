@@ -166,3 +166,5 @@ C:\GitHub\AutoService\AutoService\bin\AutoService.WEB.dll
 C:\GitHub\AutoService\AutoService\bin\AutoService.WEB.pdb
 C:\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.dll
 C:\GitHub\AutoService\AutoService\obj\Debug\AutoService.WEB.pdb
+C:\github\AutoService\AutoService\bin\AutoService.Infrastructure.dll
+C:\github\AutoService\AutoService\bin\AutoService.Infrastructure.pdb

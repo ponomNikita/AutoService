@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using AutoService.DAL.Models;
-using AutoService.Services.Services;
 
 namespace AutoService.Services.ViewModels
 {
@@ -13,11 +8,14 @@ namespace AutoService.Services.ViewModels
         public int id { get; set; }
         [Required]
         [Display(Name = "Логин")]
+        [MaxLength(50)]
         public string Login { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
+
         [Required]
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
@@ -25,17 +23,24 @@ namespace AutoService.Services.ViewModels
         public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name = "Имя")]
+        [MaxLength(50)]
         public string FirstName { get; set; }
+
         [Display(Name = "Фамилия")]
+        [MaxLength(50)]
         public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
+        [MaxLength(50)]
         [Display(Name = "Почта")]
         public string Email { get; set; }
         [Display(Name = "Номер телефона")]
+        [MaxLength(20)]
         [Phone]
         public string PhoneNumber { get; set; }
         [Display(Name = "Адрес")]
+        [MaxLength(50)]
         public string Address { get; set; }
 
         public bool IsCreate { get; set; }

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AutoService.Services;
 using NUnit.Framework;
 using AutoService.DAL;
 using AutoService.DAL.Models;
 using AutoService.Services.Interfaces;
-using AutoService.Services;
 using AutoService.Services.ViewModels;
 using NSubstitute;
-using NSubstitute.Core;
 
 namespace AutoService.Services.Test
 {
@@ -30,8 +25,12 @@ namespace AutoService.Services.Test
                 new Application()
                 {
                     id = 1,
-                    CarModel = "uaz patriot",
-                    CarNumber = "as123d",
+                    Car = new Car
+                    {
+                        Model = "uaz patriot",
+                        RegNumber = "as123d"
+                    },
+
                     CreatedAt = DateTime.Now,
                     CreatedBy = "sys",
                     Date = new DateTime(2016, 10, 17, 15, 30, 0),
@@ -44,8 +43,11 @@ namespace AutoService.Services.Test
                 new Application()
                 {
                     id = 2,
-                    CarModel = "mercedes cls",
-                    CarNumber = "ad123d",
+                    Car = new Car
+                    {
+                        Model = "mercedes cls",
+                        RegNumber = "ad123d"
+                    },
                     CreatedAt = DateTime.Now,
                     CreatedBy = "sys",
                     Date = new DateTime(2016, 10, 17, 16, 30, 0),
@@ -105,8 +107,11 @@ namespace AutoService.Services.Test
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
                 id = 1,
-                CarModel = "opel",
-                CarNumber = "gh345q",
+                Car = new Car
+                {
+                    Model = "opel",
+                    RegNumber = "gh345q"
+                },
                 CreatedAt = DateTime.Now,
                 CreatedBy = "sys",
                 Date = Date,
@@ -127,8 +132,11 @@ namespace AutoService.Services.Test
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
                 id = 1,
-                CarModel = carModel,
-                CarNumber = "gh345q",
+                Car = new Car
+                {
+                    Model = carModel,
+                    RegNumber = "gh345q"
+                },
                 CreatedAt = DateTime.Now,
                 CreatedBy = "sys",
                 Date = new DateTime(2016, 12, 17, 16, 30, 0),
@@ -149,8 +157,11 @@ namespace AutoService.Services.Test
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
                 id = 1,
-                CarModel = "opel",
-                CarNumber = carNumber,
+                Car = new Car
+                {
+                    Model = "opel",
+                    RegNumber = carNumber
+                },
                 CreatedAt = DateTime.Now,
                 CreatedBy = "sys",
                 Date = new DateTime(2016, 12, 17, 16, 30, 0),

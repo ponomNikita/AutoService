@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using AutoService.DAL.Models;
 
 namespace AutoService.DAL
@@ -37,9 +32,12 @@ namespace AutoService.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CoordinationRequest>()
-                        .HasRequired<Application>(s => s.Application)
+                        .HasRequired(s => s.Application)
                         .WithMany(s => s.CoordinationRequests);
 
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Login)
+                .IsUnique();
         }
     }
 }

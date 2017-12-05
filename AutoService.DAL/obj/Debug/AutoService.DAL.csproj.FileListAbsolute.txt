@@ -37,3 +37,5 @@ C:\GitHub\AutoService\AutoService.DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.csprojResolveAssemblyReference.cache
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.dll
 C:\GitHub\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.pdb
+C:\github\AutoService\AutoService.DAL\obj\Debug\Tbs16.DAL.Migrations.Initial.resources
+C:\github\AutoService\AutoService.DAL\obj\Debug\AutoService.DAL.csproj.GenerateResource.Cache

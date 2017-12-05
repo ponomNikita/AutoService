@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoService.DAL.Models
 {
@@ -25,7 +19,6 @@ namespace AutoService.DAL.Models
 
         public int? CoordinationResponseId { get; set; }
 
-        [ForeignKey("ApplicationId")]
         public virtual Application Application { get; set; }
 
         public virtual CoordinationResponse CoordinationResponse { get; set; }
