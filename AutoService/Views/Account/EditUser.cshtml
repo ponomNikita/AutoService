@@ -34,8 +34,12 @@
     @using (Html.BeginForm(Model.HandleActionName, "Account", new { returnUrl = returnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createUserForm" }))
     {
         @Html.HiddenFor(m => m.id)
-        @Html.HiddenFor(m => m.Password)
-        @Html.HiddenFor(m => m.ConfirmPassword)
+
+        if (!Model.IsCreate)
+         {
+             @Html.HiddenFor(m => m.Password)
+             @Html.HiddenFor(m => m.ConfirmPassword)
+         }
         <div class="container">
             <div class="row">
                 <div class="form-group">

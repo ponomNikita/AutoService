@@ -12,14 +12,14 @@ namespace AutoService.Services.ViewModels
         public string Login { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
+        [MaxLength(25)]
         public string Password { get; set; }
 
         [Required]
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        [DataType(DataType.Password)]
+        [MaxLength(25)]
         public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name = "Имя")]
