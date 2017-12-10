@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Tbs16.DAL.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -24,45 +26,35 @@ namespace Tbs16.DAL.Migrations
                   Description = "Добавляет поиск по сайту"
               }
             );
-                   
-            context.Roles.AddOrUpdate(
-                p => p.Code,
-                new Role
-                {
-                    id = 1,
-                    Code = 1,
-                    Name = "admin",
-                    Description = "Администратор системы"
-                }
-            );
 
+            // Добавление пользователей
             context.Users.AddOrUpdate(
-                p => p.id,
+                p => p.Id,
                 new User
                 {
-                    id = 1,
+                    Id = 1,
                     Login = "sys",
                     Email = "sys@mail.com",
                     FirstName = "System",
-                    Password = "50b3f4751aa27e17c4bf6d3f85f68699"
+                    Password = "50b3f4751aa27e17c4bf6d3f85f68699",
+                    Roles = new List<Role>
+                    {
+                        new Role
+                        {
+                            Code = 1, 
+                            Name = "admin",
+                            Description = "Администратор системы"
+                        }
+                    }
                 },
                 new User
                 {
-                    id = 2,
+                    Id = 2,
                     Login = "user",
                     Email = "user@mail.com",
                     FirstName = "User",
                     LastName = "User",
                     Password = "50b3f4751aa27e17c4bf6d3f85f68699"
-                }
-            );
-
-            context.User_Roles.AddOrUpdate(
-                p => p.id,
-                new User_Role
-                {
-                    roleId = 1,
-                    userId = 1
                 }
             );
         }

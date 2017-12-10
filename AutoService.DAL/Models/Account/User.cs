@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoService.DAL.Models
@@ -6,7 +8,10 @@ namespace AutoService.DAL.Models
     [Table("User", Schema = "user")]
     public partial class User : TEntity
     {
-        public new int id { get; set; }
+        public User()
+        {
+            Roles = new Collection<Role>();
+        }
 
         [Required]
         [MaxLength(50)]
@@ -32,6 +37,8 @@ namespace AutoService.DAL.Models
 
         [MaxLength(50)]
         public string Address { get; set; }
+
+        public virtual ICollection<Role> Roles { get; set; }
 
     }
 }

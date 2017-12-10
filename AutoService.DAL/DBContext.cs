@@ -10,7 +10,6 @@ namespace AutoService.DAL
         { }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<User_Role> User_Roles { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Application> Applications { get; set; }
         public DbSet<CoordinationRequest> CoordinationRequests { get; set; }
@@ -23,10 +22,8 @@ namespace AutoService.DAL
                 instance = new DBContext();
                 return instance;
             }
-            else
-            {
-                return instance;
-            }
+            
+            return instance;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

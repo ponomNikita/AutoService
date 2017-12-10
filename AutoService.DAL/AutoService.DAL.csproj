@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext.cs" />
-    <Compile Include="Migrations\201712051730149_Initial.cs" />
-    <Compile Include="Migrations\201712051730149_Initial.Designer.cs">
-      <DependentUpon>201712051730149_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201712100945114_Initial.cs" />
+    <Compile Include="Migrations\201712100945114_Initial.Designer.cs">
+      <DependentUpon>201712100945114_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Application\Car.cs" />
     <Compile Include="Models\Application\CoordinationRequest.cs" />
@@ -56,7 +56,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\Role.cs" />
     <Compile Include="Models\Account\User.cs" />
-    <Compile Include="Models\Account\User_Role.cs" />
     <Compile Include="Models\Application\Application.cs" />
     <Compile Include="Models\Settings\Module.cs" />
     <Compile Include="Models\Shared\_Exception.cs" />
@@ -80,8 +79,8 @@
     <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712051730149_Initial.resx">
-      <DependentUpon>201712051730149_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712100945114_Initial.resx">
+      <DependentUpon>201712100945114_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,7 +16,8 @@ namespace AutoService.Controllers
 
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated
+            var userLogin = User.Identity.Name;
+            if (!string.IsNullOrWhiteSpace(userLogin) && User.Identity.IsAuthenticated
                 && permissionService.HasRole((int) Roles.Admin, User.Identity.Name))
             {
                 return RedirectToAction("Index", "Application");

@@ -159,7 +159,7 @@ namespace AutoService.Services
 
         public string Edit(ref ApplicationEdit model)
         {
-            Application item = GetById(model.id);
+            Application item = GetById(model.Id);
             DateTime dateTime = item.Date;
             model.Copy(item);
 
@@ -223,9 +223,9 @@ namespace AutoService.Services
             responceRepository.Create(response);
             responceRepository.Save();
 
-            var newResponse = responceRepository.GetAll().OrderByDescending(t => t.id).FirstOrDefault();
+            var newResponse = responceRepository.GetAll().OrderByDescending(t => t.Id).FirstOrDefault();
             var request = requestRepository.Get(model.CoordinationRequestId);
-            request.CoordinationResponseId = newResponse.id;
+            request.CoordinationResponseId = newResponse?.Id;
 
             requestRepository.Update(request);
             requestRepository.Save();

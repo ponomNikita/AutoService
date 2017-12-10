@@ -4,7 +4,7 @@
 @{
     var userLoginName = User.Identity.Name;
     IPermissionService permissionService = ServicesFactory.CreatePermissionService();
-    bool isAdmin = permissionService.HasRole((int) Roles.Admin, userLoginName);
+    bool isAdmin = !string.IsNullOrWhiteSpace(userLoginName) && permissionService.HasRole((int) Roles.Admin, userLoginName);
 }
 <script>
     $(document).ready(function () {

@@ -13,9 +13,6 @@ namespace AutoService.DAL.Models
         {
             CoordinationRequests = new Collection<CoordinationRequest>();
         }
-        [Required]
-        public new int id { get; set; }
-
         public int CarId { get; set; }
 
         public virtual Car Car { get; set; }

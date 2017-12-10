@@ -49,7 +49,7 @@ namespace AutoService.Services.ViewModels
 
         public UserViewModel(User user)
         {
-            id = user.id;
+            id = user.Id;
             Login = user.Login;
             Password = user.Password;
             FirstName = user.FirstName;

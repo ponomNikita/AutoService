@@ -24,7 +24,7 @@ namespace AutoService.Services.Test
             {
                 new Application()
                 {
-                    id = 1,
+                    Id = 1,
                     Car = new Car
                     {
                         Model = "uaz patriot",
@@ -42,7 +42,7 @@ namespace AutoService.Services.Test
 
                 new Application()
                 {
-                    id = 2,
+                    Id = 2,
                     Car = new Car
                     {
                         Model = "mercedes cls",
@@ -92,7 +92,7 @@ namespace AutoService.Services.Test
             if (!apps.Any())
                 return -1;
 
-            return apps.FirstOrDefault().id;
+            return apps.FirstOrDefault().Id;
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace AutoService.Services.Test
 
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
-                id = 1,
+                Id = 1,
                 Car = new Car
                 {
                     Model = "opel",
@@ -131,7 +131,7 @@ namespace AutoService.Services.Test
         {
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
-                id = 1,
+                Id = 1,
                 Car = new Car
                 {
                     Model = carModel,
@@ -156,7 +156,7 @@ namespace AutoService.Services.Test
         {
             ApplicationEdit newApp = new ApplicationEdit(new Application()
             {
-                id = 1,
+                Id = 1,
                 Car = new Car
                 {
                     Model = "opel",

@@ -19,55 +19,17 @@ namespace AutoService.Services.Test
         IPermissionService service;
         IAutoServiceUnitOfWork uowSub;
         User[] users;
-        User_Role[] user_roles;
         Role[] roles;
 
         [SetUp]
         public void Init()
         {
-            users = new User[]
-           {
-                new User()
-                {
-                    id = 1,
-                    Login = "sys",
-                    FirstName = "System",
-                    LastName = "Admin",
-                    Email = "sys@sys.com"
-                },
-
-                new User()
-                {
-                    id = 2,
-                    Login = "Vasya",
-                    FirstName = "Vasiliy",
-                    LastName = "Pupkin",
-                    Email = "vasya@vasya.com"
-                },
-           };
-
-            user_roles = new User_Role[]
-            {
-                new User_Role()
-                {
-                    id = 1,
-                    userId = 1,
-                    roleId = 1
-                },
-
-                new User_Role()
-                {
-                    id = 2,
-                    userId = 1,
-                    roleId = 2
-                }
-            };
 
             roles = new Role[]
             {
                 new Role()
                 {
-                    id = 1,
+                    Id = 1,
                     Code = 1,
                     Description = "Системный администратор",
                     Name = "admin"
@@ -75,16 +37,41 @@ namespace AutoService.Services.Test
 
                 new Role()
                 {
-                    id = 2,
+                    Id = 2,
                     Code = 2,
                     Description = "manager",
                     Name = "manager"
                 }
             };
 
+            users = new User[]
+           {
+                new User()
+                {
+                    Id = 1,
+                    Login = "sys",
+                    FirstName = "System",
+                    LastName = "Admin",
+                    Email = "sys@sys.com",
+                    Roles = new List<Role>
+                    {
+                        roles[0], roles[1]
+                    }
+                },
+
+                new User()
+                {
+                    Id = 2,
+                    Login = "Vasya",
+                    FirstName = "Vasiliy",
+                    LastName = "Pupkin",
+                    Email = "vasya@vasya.com",
+                    Roles = new List<Role>()
+                },
+           };
+
             uowSub = Substitute.For<IAutoServiceUnitOfWork>();
             uowSub.Users.GetAll().Returns(users.AsQueryable());
-            uowSub.User_Roles.GetAll().Returns(user_roles.AsQueryable());
             uowSub.Roles.GetAll().Returns(roles.AsQueryable());
 
             service = new PermissionService(uowSub);
@@ -92,16 +79,19 @@ namespace AutoService.Services.Test
 
         [TestCase(1, "sys", TestName ="User is admin", ExpectedResult = true)]
         [TestCase(1, "Vasya", TestName = "User is not admin", ExpectedResult = false)]
-        [TestCase(1, "Natasha", TestName = "There isn't such user login", ExpectedResult = false)]
         public bool HasRoleTest(int roleCode, string userLogin)
         {
             bool res = service.HasRole(roleCode, userLogin);
             return res;
         }
 
+        public void HasRolesWhenLoginIsInvalid()
+        {
+            Assert.Throws<ArgumentException>(() => service.HasRole(1, "Dima"));
+        }
+
         [TestCase("sys", TestName = "Get Sys roles", ExpectedResult = "admin,manager")]
         [TestCase("Vasya", TestName = "Get Vasya roles", ExpectedResult = "")]
-        [TestCase("Dima", TestName = "There isn't any Dima", ExpectedResult = null)]
         public string GetUserRolesTest(string login)
         {
             string[] roles = service.GetUserRoles(login);
@@ -112,6 +102,11 @@ namespace AutoService.Services.Test
             string result = string.Join(",", roles);
 
             return result;
+        }
+
+        public void GetUsersRolesWhenLoginIsInvalid()
+        {
+            Assert.Throws<ArgumentException>(() => service.GetUserRoles("Dima"));
         }
     }
 }

@@ -39,7 +39,7 @@ namespace AutoService.Services.ViewModels
             this.Note = application.Note;
             this.Status = application.Status;
             this.RequestType = application.RequestType;
-            this.id = application.id;
+            this.Id = application.Id;
             foreach(var req in application.CoordinationRequests)
             {
                 this.CoordinationRequests.Add(req);
@@ -48,7 +48,7 @@ namespace AutoService.Services.ViewModels
 
         public void Copy(Application destination)
         {
-            destination.id = id;
+            destination.Id = Id;
             destination.Status = Status;
 
             destination.Car = new Car

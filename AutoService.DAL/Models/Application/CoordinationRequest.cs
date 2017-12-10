@@ -5,8 +5,6 @@ namespace AutoService.DAL.Models
     [Table("CoordinationRequest", Schema = "app")]
     public class CoordinationRequest : TEntity
     {
-        public new int id { get; set; }
-
         public string SourceUser { get; set; }
 
         public string DistanationUser { get; set; }

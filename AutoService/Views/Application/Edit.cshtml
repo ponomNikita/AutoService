@@ -14,7 +14,7 @@
     var timepickerStartTime = WebConfigurationManager.AppSettings["scheduleStartTime"];
     var timepickerEndTime = WebConfigurationManager.AppSettings["scheduleEndTime"];
 
-    bool IsEdit = Model.id != 0;
+    bool IsEdit = Model.Id != 0;
     bool isAdmin = permissionService.HasRole((int) Roles.Admin, User.Identity.Name);
     bool isApproved = Model.IsApproved;
 
