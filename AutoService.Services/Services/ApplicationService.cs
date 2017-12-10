@@ -100,12 +100,12 @@ namespace AutoService.Services
 
                 if (!string.IsNullOrWhiteSpace(filter.CarModel))
                 {
-                    applications = applications.Where(t => t.CarModel.ToLower().Contains(filter.CarModel.ToLower()));
+                    applications = applications.Where(t => t.Car.Model.ToLower().Contains(filter.CarModel.ToLower()));
                 }
 
                 if (!string.IsNullOrWhiteSpace(filter.CarNumber))
                 {
-                    applications = applications.Where(t => t.CarNumber.ToLower().Contains(filter.CarNumber.ToLower()));
+                    applications = applications.Where(t => t.Car.RegNumber.ToLower().Contains(filter.CarNumber.ToLower()));
                 }
 
                 if (!string.IsNullOrWhiteSpace(filter.CreatedBy) 
@@ -159,7 +159,7 @@ namespace AutoService.Services
 
         public string Edit(ref ApplicationEdit model)
         {
-            Application item = GetById(model.id);
+            Application item = GetById(model.Id);
             DateTime dateTime = item.Date;
             model.Copy(item);
 
@@ -183,12 +183,12 @@ namespace AutoService.Services
 
         public void Validate(Application item)
         {
-            if (string.IsNullOrEmpty(item.CarNumber))
+            if (string.IsNullOrEmpty(item.Car.RegNumber))
             {
                 throw new Exception("Поле 'Номер автомобиля' должно быть заполнено");
             }
 
-            if (string.IsNullOrEmpty(item.CarModel))
+            if (string.IsNullOrEmpty(item.Car.Model))
             {
                 throw new Exception("Поле 'Модель автомобиля' должно быть заполнено");
             }
@@ -223,9 +223,9 @@ namespace AutoService.Services
             responceRepository.Create(response);
             responceRepository.Save();
 
-            var newResponse = responceRepository.GetAll().OrderByDescending(t => t.id).FirstOrDefault();
+            var newResponse = responceRepository.GetAll().OrderByDescending(t => t.Id).FirstOrDefault();
             var request = requestRepository.Get(model.CoordinationRequestId);
-            request.CoordinationResponseId = newResponse.id;
+            request.CoordinationResponseId = newResponse?.Id;
 
             requestRepository.Update(request);
             requestRepository.Save();

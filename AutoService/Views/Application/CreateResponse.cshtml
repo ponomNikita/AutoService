@@ -12,7 +12,7 @@
     </div>
     @using (Html.BeginForm("CreateResponse", "Application", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createApplicationForm" }))
     {
-        @Html.HiddenFor(m => m.id)
+        @Html.HiddenFor(m => m.Id)
         @Html.HiddenFor(m => m.CoordinationRequestId)
         <div class="container">
             <div class="row">

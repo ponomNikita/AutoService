@@ -9,7 +9,6 @@ using AutoService.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using NSubstitute;
-using NUnit.Framework.Internal.Filters;
 
 
 namespace AutoService.Services.Test
@@ -17,17 +16,36 @@ namespace AutoService.Services.Test
     [TestFixture]
     public class AccountServiceTest
     {
-        IAccountService service;
-        IAutoServiceUnitOfWork uowSub;
-        User[] users;
-        User_Role[] user_roles;
-        Role[] roles;
-        private UserViewModel newUser;
+        IAccountService _service;
+        IAutoServiceUnitOfWork _uowSub;
+        User[] _users;
+        Role[] _roles;
+        private UserViewModel _newUser;
 
         [SetUp]
         public void Init()
         {
-            newUser = new UserViewModel()
+
+            _roles = new[]
+            {
+                new Role()
+                {
+                    Id = 1,
+                    Code = 1,
+                    Description = "Системный администратор",
+                    Name = "admin"
+                },
+
+                new Role()
+                {
+                    Id = 2,
+                    Code = 2,
+                    Description = "manager",
+                    Name = "manager"
+                }
+            };
+
+            _newUser = new UserViewModel()
             {
                 id = 0,
                 Login = "Vasya",
@@ -39,69 +57,34 @@ namespace AutoService.Services.Test
                 Password =  "Q",
                 IsCreate = true
             };
-            users = new User[]
+            _users = new User[]
            {
                 new User()
                 {
-                    id = 1,
+                    Id = 1,
                     Login = "sys",
                     FirstName = "System",
                     LastName = "Admin",
-                    Email = "sys@sys.com"
+                    Email = "sys@sys.com",
+                    Roles = new List<Role> { _roles[0] }
                 },
 
                 new User()
                 {
-                    id = 2,
+                    Id = 2,
                     Login = "Vasya",
                     FirstName = "Vasiliy",
                     LastName = "Pupkin",
-                    Email = "vasya@vasya.com"
+                    Email = "vasya@vasya.com",
+                    Roles = new List<Role> { _roles[1] }
                 },
            };
 
-            user_roles = new User_Role[]
-            {
-                new User_Role()
-                {
-                    id = 1,
-                    userId = 1,
-                    roleId = 1
-                },
+            _uowSub = Substitute.For<IAutoServiceUnitOfWork>();
+            _uowSub.Users.GetAll().Returns(_users.AsQueryable());
+            _uowSub.Roles.GetAll().Returns(_roles.AsQueryable());
 
-                new User_Role()
-                {
-                    id = 2,
-                    userId = 1,
-                    roleId = 2
-                }
-            };
-
-            roles = new Role[]
-            {
-                new Role()
-                {
-                    id = 1,
-                    Code = 1,
-                    Description = "Системный администратор",
-                    Name = "admin"
-                },
-
-                new Role()
-                {
-                    id = 2,
-                    Code = 2,
-                    Description = "manager",
-                    Name = "manager"
-                }
-            };
-
-            uowSub = Substitute.For<IAutoServiceUnitOfWork>();
-            uowSub.Users.GetAll().Returns(users.AsQueryable());
-            uowSub.User_Roles.GetAll().Returns(user_roles.AsQueryable());
-            uowSub.Roles.GetAll().Returns(roles.AsQueryable());
-
-            service = new AccountService(uowSub);
+            _service = new AccountService(_uowSub);
         }
 
         [Test]
@@ -111,10 +94,10 @@ namespace AutoService.Services.Test
 
         public string CreateUserTest(string login, string email)
         {
-            newUser.Login = login;
-            newUser.Email = email;
+            _newUser.Login = login;
+            _newUser.Email = email;
             string msg;
-            service.CreateUser(newUser, out msg);
+            _service.CreateUser(_newUser, out msg);
 
             return msg;
         }

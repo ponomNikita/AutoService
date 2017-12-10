@@ -12,7 +12,6 @@ namespace AutoService.DAL
     {
         IRepository<User> Users { get; }
         IRepository<Role> Roles { get; }
-        IRepository<User_Role> User_Roles { get; }
         IRepository<Module> Modules { get; }
         IRepository<Application> Applications { get; }
         IRepository<CoordinationRequest> CoordinationRequests { get; }

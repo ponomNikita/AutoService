@@ -33,7 +33,7 @@
                 <tr>
                     <td>@(((RequestTypes)app.RequestType).Description())</td>
                     <td>@(app.Status.HasValue ? ((ApplicationStatus)app.Status.Value).Description() : string.Empty)</td>
-                    <td>@(app.CarModel)</td>
+                    <td>@(app.Car.Model)</td>
                     <td>@(app.Date)</td>
                     @if (!isAdmin)
                     {
@@ -46,11 +46,11 @@
                     }
                     
                     <td>
-                            @Html.ActionLink(editBtnName, "Edit", "Application", new {id = app.id},
+                            @Html.ActionLink(editBtnName, "Edit", "Application", new {id = app.Id},
                                 new {role = "button", @class = "btn btn-warning", style = "padding:2px; margin:1px"})
                         @if (isAdmin)
                         {
-                            @Html.ActionLink("Удалить", "Delete", "Application", new {id = app.id},
+                            @Html.ActionLink("Удалить", "Delete", "Application", new {id = app.Id},
                                 new
                                 {
                                     role = "button", @class = "btn btn-danger", style = "padding:2px; margin:1px",
@@ -58,7 +58,7 @@
                                 })
                             if (!app.IsApproved)
                             {
-                                @Html.ActionLink("Утвердить", "Approve", "Application", new {id = app.id},
+                                @Html.ActionLink("Утвердить", "Approve", "Application", new {id = app.Id},
                                     new {role = "button", @class = "btn btn-info", style = "padding:2px; margin:1px"})
                             }
                         }

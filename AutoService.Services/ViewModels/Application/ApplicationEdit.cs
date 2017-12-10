@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 using AutoService.DAL.Models;
 
 namespace AutoService.Services.ViewModels
 {
-    public class ApplicationEdit : AutoService.DAL.Models.Application
+    public class ApplicationEdit : Application
     {
         [Required]
         [Display(Name="Время")]
@@ -23,29 +20,44 @@ namespace AutoService.Services.ViewModels
 
         public ApplicationEdit(Application application)
         {
+            if (application == null)
+                throw new ArgumentNullException(nameof(application));
+
             this.Date = application.Date.Date;
             this.Time = application.Date.ToShortTimeString();
-            this.CarModel = application.CarModel;
-            this.CarNumber = application.CarNumber;
+
+            this.Car = new Car
+            {
+                Model = application.Car?.Model,
+                RegNumber = application.Car?.RegNumber,
+                Year = application.Car?.Year
+            };
+
             this.CreatedAt = application.CreatedAt;
             this.CreatedBy = application.CreatedBy;
             this.IsApproved = application.IsApproved;
             this.Note = application.Note;
             this.Status = application.Status;
             this.RequestType = application.RequestType;
-            this.id = application.id;
+            this.Id = application.Id;
             foreach(var req in application.CoordinationRequests)
             {
                 this.CoordinationRequests.Add(req);
             }
         }
 
-        public void Copy(DAL.Models.Application destination)
+        public void Copy(Application destination)
         {
-            destination.id = id;
+            destination.Id = Id;
             destination.Status = Status;
-            destination.CarModel = CarModel;
-            destination.CarNumber = CarNumber;
+
+            destination.Car = new Car
+            {
+                Model =  Car?.Model,
+                RegNumber = Car?.RegNumber,
+                Year = Car?.Year
+            };
+                
             destination.CreatedAt = DateTime.Now;
             destination.RequestType = RequestType;
             if(this.Date.HasValue)

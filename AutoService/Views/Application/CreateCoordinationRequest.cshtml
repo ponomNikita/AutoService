@@ -13,7 +13,7 @@
 }
 <script>
     $(document).ready(function () {
-        $("#ApplicationId").prop("value", '@Model.id');
+        $("#ApplicationId").prop("value", '@Model.Id');
         $("#DistanationUser").prop("value", '@Model.CreatedBy');
         $("#SourceUser").prop("value", '@User.Identity.Name');
     });

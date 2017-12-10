@@ -36,23 +36,21 @@ namespace AutoService.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel model, string returnUrl = "")
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                string modelError;
-                var newUser = accountService.CreateUser(model, out modelError);
-
-                if (!string.IsNullOrWhiteSpace(modelError))
-                {
-                    ModelState.AddModelError("", modelError);
-                    return View(model);
-                }
-
-                return View("SuccessCreationUser", newUser);
+                return View(model);
             }
-            else
+
+            string modelError;
+            var newUser = accountService.CreateUser(model, out modelError);
+
+            if (!string.IsNullOrWhiteSpace(modelError))
             {
-                return !string.IsNullOrWhiteSpace(returnUrl) ? Redirect(returnUrl) : Redirect("~/");
+                ModelState.AddModelError("", modelError);
+                return View(model);
             }
+
+            return View("SuccessCreationUser", newUser);
         }
 
         [HttpPost]

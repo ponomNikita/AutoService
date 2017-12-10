@@ -12,7 +12,6 @@ namespace AutoService.DAL
         private DBContext db = DBContext.GetDBContext();
         private IRepository<User> userRepositrory;
         private IRepository<Role> roleRepositrory;
-        private IRepository<User_Role> user_RoleRepositrory;
         private IRepository<Module> moduleRepositrory;
         private IRepository<Application> applicationRepository;
         private IRepository<CoordinationRequest> coordinationRequestRepository;
@@ -35,16 +34,6 @@ namespace AutoService.DAL
                 if (roleRepositrory == null)
                     roleRepositrory = new Repository<Role>(db);
                 return roleRepositrory;
-            }
-        }
-
-        public IRepository<User_Role> User_Roles
-        {
-            get
-            {
-                if (user_RoleRepositrory == null)
-                    user_RoleRepositrory = new Repository<User_Role>(db);
-                return user_RoleRepositrory;
             }
         }
 

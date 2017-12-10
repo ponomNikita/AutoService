@@ -34,7 +34,7 @@ namespace AutoService.DAL
 
         public void Delete(int id)
         {
-            var entity = dbSet.FirstOrDefault(o => o.id == id);
+            var entity = dbSet.FirstOrDefault(o => o.Id == id);
             if (entity != null)
             {
                 dbSet.Remove(entity);
@@ -43,7 +43,7 @@ namespace AutoService.DAL
 
         public T Get(int id)
         { 
-            return dbSet.FirstOrDefault(o => o.id == id);
+            return dbSet.FirstOrDefault(o => o.Id == id);
         }
 
         public virtual IQueryable<T> GetAll()

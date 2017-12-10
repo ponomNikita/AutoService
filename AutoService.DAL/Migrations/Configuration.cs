@@ -1,16 +1,15 @@
+using System.Collections.Generic;
+
 namespace Tbs16.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
     using AutoService.DAL.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<AutoService.DAL.DBContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             AutomaticMigrationDataLossAllowed = true;
             ContextKey = "AutoService.DAL.DBContext";
         }
@@ -27,14 +26,35 @@ namespace Tbs16.DAL.Migrations
                   Description = "Добавляет поиск по сайту"
               }
             );
-                   
-            context.Roles.AddOrUpdate(
-                p => p.Code,
-                new Role
+
+            // Добавление пользователей
+            context.Users.AddOrUpdate(
+                p => p.Id,
+                new User
                 {
-                    Code = 1,
-                    Name = "admin",
-                    Description = "Администратор системы"
+                    Id = 1,
+                    Login = "sys",
+                    Email = "sys@mail.com",
+                    FirstName = "System",
+                    Password = "50b3f4751aa27e17c4bf6d3f85f68699",
+                    Roles = new List<Role>
+                    {
+                        new Role
+                        {
+                            Code = 1, 
+                            Name = "admin",
+                            Description = "Администратор системы"
+                        }
+                    }
+                },
+                new User
+                {
+                    Id = 2,
+                    Login = "user",
+                    Email = "user@mail.com",
+                    FirstName = "User",
+                    LastName = "User",
+                    Password = "50b3f4751aa27e17c4bf6d3f85f68699"
                 }
             );
         }
